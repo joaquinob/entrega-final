@@ -8,6 +8,6 @@ export interface Book {
    genre: Genre
    image: string
    rating: number // será un valor probablemente decimal
-   publicationYear: number //No utilizo Date para evitar conflictos con BBDD -  en su lugar solamente escribir el año cde cuándo se ha publicado
+   publicationYear: number //No utilizo Date para evitar conflictos con BBDD -  en su lugar solamente escribir el año de cuándo se ha publicado
 
 }
