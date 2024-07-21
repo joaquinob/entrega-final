@@ -1,28 +1,36 @@
-.book-card {
-    width: 300px; 
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    overflow: hidden; 
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    text-align: center;
+.card {
+    border: 1px solid #ddd; /* Borde de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
+    overflow: hidden; /* Asegura que la imagen no se desborde */
   }
   
-  .book-card img {
-    width: 70%; 
-    max-width: 100%; 
-    height: auto; 
-    object-fit: cover; 
-    border-bottom: 1px solid #ddd;
-    display: block; 
-    margin: 0 auto; 
+  .card-img-top {
+    width: 100%; /* Imagen ocupa todo el ancho */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin deformar */
   }
   
-  .book-card h1 {
-    margin: 10px 0;
+  .card-body {
+    padding: 1rem; /* Espaciado interno */
   }
   
-  .book-card p {
-    margin: 5px 0; 
+  .card-title {
+    font-size: 1.25rem; /* Tamaño del título */
+    margin-bottom: 0.5rem; /* Espaciado inferior */
+  }
+  
+  .card-text {
+    margin: 0.5rem 0; /* Espaciado superior e inferior */
+  }
+  
+  .rating {
+    font-size: 1.5rem; /* Tamaño de los iconos de estrellas */
+    color: #ffcc00; /* Color dorado para las estrellas */
+    margin-bottom: 1rem; /* Espaciado inferior para el bloque de estrellas */
+  }
+  
+  .empty-star {
+    color: #ddd; /* Color gris para las estrellas vacías */
   }
   
