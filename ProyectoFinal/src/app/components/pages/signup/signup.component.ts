@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,7 @@ export class SignupComponent {
   form!: FormGroup
   password: string = 'password'
 
-  constructor(private builder: FormBuilder, private router: Router){
+  constructor(private builder: FormBuilder, private router: Router, private authService: AuthService){
     this.form = builder.group({
       'name': new FormControl(null, [Validators.required]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
@@ -22,6 +23,11 @@ export class SignupComponent {
   }
 
   signUp() {
-    
+    this.authService.signup(this.form.value.name, this.form.value.email, this.form.value.password).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/login')
+      },
+      error:() => {}
+    })
   }
 }
