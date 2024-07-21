@@ -5,13 +5,17 @@
     overflow: hidden; 
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    text-align: center;
   }
   
   .book-card img {
-    width: 100%; 
+    width: 70%; 
+    max-width: 100%; 
     height: auto; 
     object-fit: cover; 
     border-bottom: 1px solid #ddd;
+    display: block; 
+    margin: 0 auto; 
   }
   
   .book-card h1 {
