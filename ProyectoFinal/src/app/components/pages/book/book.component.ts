@@ -35,6 +35,16 @@ export class BookComponent implements OnInit {
     };
   }
 
+
+  public get fullstar() : number[] {
+    const stars: number[] = []
+    for(let i = 0; i< Math.floor(this.book.rating);i++){
+      stars.push(1)
+    }
+    return stars
+  }
+  
+
   ngOnInit(): void {
     
   }
