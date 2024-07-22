@@ -16,14 +16,14 @@ export class SignupComponent {
 
   constructor(private builder: FormBuilder, private router: Router, private authService: AuthService){
     this.form = builder.group({
-      'name': new FormControl(null, [Validators.required]),
+      'username': new FormControl(null, [Validators.required]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(8)])
     })
   }
 
   signUp() {
-    this.authService.signup(this.form.value.name, this.form.value.email, this.form.value.password).subscribe({
+    this.authService.signup(this.form.value.username, this.form.value.email, this.form.value.password).subscribe({
       next: () => {
         this.router.navigateByUrl('/login')
       },

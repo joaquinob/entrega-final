@@ -16,12 +16,10 @@ export class LoginComponent {
 
   constructor(private builder: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = builder.group({
-      'username': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required])
     })
   }
 
-  login() {
-    const email: string = this.form
-  }
+  login() { }
 }
