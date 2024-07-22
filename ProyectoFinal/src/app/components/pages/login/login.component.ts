@@ -18,7 +18,7 @@ export class LoginComponent {
 
   constructor(private builder: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = builder.group({
-      'username': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required])
     })
   }
@@ -26,9 +26,9 @@ export class LoginComponent {
   login() {
     const email: string = this.form.value.email;
     const password: string = this.form.value.password;
-    const username: string = this.form.value.username;
 
-    this.authService.login(email, username, password).subscribe({
+
+    this.authService.login(email, password).subscribe({
       next: (response) => {
         const loginResponse: Login = response as Login;
         const user: User = {

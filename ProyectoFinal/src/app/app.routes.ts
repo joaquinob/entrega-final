@@ -19,12 +19,12 @@ export const routes: Routes = [
     {
         path:"login",
         component: LoginComponent,
-        canActivate: [isNotLoggedGuard]
+        // canActivate: [isNotLoggedGuard]
     },
     {
         path:"signup",
         component: SignupComponent,
-        canActivate: [isNotLoggedGuard]
+        // canActivate: [isNotLoggedGuard]
     },
     {
         path: "me",
