@@ -20,15 +20,16 @@ export class AuthService {
   signup(username: string, email: string, password: string) {
     return this.http.post(
       `${this.url}/signup`,
-      { username: username,
-         email: email,
+      {
+        username: username,
+        email: email,
         password: password
       })
   }
 
-  login(username: string, email: string, password: string) {
+  login( email: string, password: string) {
     return this.http.post(`${this.url}/login`, {
-      login: email || username,
+      email: email ,
       password: password
     })
   }

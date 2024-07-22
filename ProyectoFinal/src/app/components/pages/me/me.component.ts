@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { BookService } from '../../../services/book.service';
+import { ReviewsService } from '../../../services/reviews.service';
+import { Book } from '../../../interfaces/book';
 
 @Component({
   selector: 'app-me',
@@ -8,6 +11,7 @@ import { Component } from '@angular/core';
   styleUrl: './me.component.css'
 })
 export class MeComponent {
+  books: Book[] = [];
   user: {
     _id: string;
     username: string;
@@ -17,7 +21,7 @@ export class MeComponent {
     
   };
 
-  constructor() {
+  constructor(private bookService: BookService, private reviewsService: ReviewsService) {
     // SOLO EJEMPLO
     this.user = {
       _id: '1',
