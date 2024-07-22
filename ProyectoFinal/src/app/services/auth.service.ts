@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
 
   user: User | null = null;
-  url: string = ' backend ';
+  url: string = 'http://localhost:3000';
 
   constructor(private http: HttpClient, private cookieService: CookieService) { 
     if (cookieService.check('user')){
@@ -19,7 +19,7 @@ export class AuthService {
 
   signup(username: string, email: string, password: string) {
     return this.http.post(
-      `${this.url}/signUp`,
+      `${this.url}/signup`,
       {
         username: username,
         email: email,

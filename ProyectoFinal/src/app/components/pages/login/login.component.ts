@@ -1,7 +1,9 @@
+import { Login } from './../../../interfaces/login';
 import { Component } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,25 @@ export class LoginComponent {
   }
 
   login() {
-    const email: string = this.form
+    const email: string = this.form.value.email;
+    const password: string = this.form.value.password;
+    const username: string = this.form.value.username;
+
+    this.authService.login(email, username, password).subscribe({
+      next: (response) => {
+        const loginResponse: Login = response as Login;
+        const user: User = {
+          token: loginResponse.token,
+          id: loginResponse.id,
+          role: loginResponse.role,
+          email: loginResponse.email,
+          username: loginResponse.username
+        };
+
+        this.authService.saveUser(user);
+        this.router.navigateByUrl('/')
+      },
+      error: () => {}
+    })
   }
 }
