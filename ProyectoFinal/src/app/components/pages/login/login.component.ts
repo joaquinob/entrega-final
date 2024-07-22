@@ -22,6 +22,5 @@ export class LoginComponent {
   }
 
   login() {
-    const email: string = this.form
   }
 }
