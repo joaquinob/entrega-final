@@ -1,36 +1,36 @@
 .card {
-    border: 1px solid #ddd; /* Borde de la tarjeta */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
-    overflow: hidden; /* Asegura que la imagen no se desborde */
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
   }
   
   .card-img-top {
-    width: 100%; /* Imagen ocupa todo el ancho */
-    height: auto; /* Mantiene la proporción de la imagen */
-    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin deformar */
+    width: 100%; 
+    height: auto; 
+    object-fit: cover; 
   }
   
   .card-body {
-    padding: 1rem; /* Espaciado interno */
+    padding: 1rem; 
   }
   
   .card-title {
-    font-size: 1.25rem; /* Tamaño del título */
-    margin-bottom: 0.5rem; /* Espaciado inferior */
+    font-size: 1.25rem; 
+    margin-bottom: 0.5rem; 
   }
   
   .card-text {
-    margin: 0.5rem 0; /* Espaciado superior e inferior */
+    margin: 0.5rem 0; 
   }
   
   .rating {
-    font-size: 1.5rem; /* Tamaño de los iconos de estrellas */
-    color: #ffcc00; /* Color dorado para las estrellas */
-    margin-bottom: 1rem; /* Espaciado inferior para el bloque de estrellas */
+    font-size: 1.5rem; 
+    color: #ffcc00; 
+    margin-bottom: 1rem; 
   }
   
   .empty-star {
-    color: #ddd; /* Color gris para las estrellas vacías */
+    color: #ddd; 
   }
   
