@@ -19,7 +19,7 @@ export class AuthService {
 
   signup(username: string, email: string, password: string) {
     return this.http.post(
-      `${this.url}/signUp`,
+      `${this.url}/signup`,
       {
         username: username,
         email: email,
