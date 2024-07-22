@@ -7,6 +7,9 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 import { BooksComponent } from './components/pages/admin/books/books.component';
 import { UsersComponent } from './components/pages/admin/users/users.component';
 import { ReviewsComponent } from './components/pages/admin/reviews/reviews.component';
+import { isNotLoggedGuard } from './guards/is-not-logged.guard';
+import { isLoggedGuard } from './guards/is-logged.guard';
+import { isAdminGuard } from './guards/is-admin.guard';
 
 export const routes: Routes = [
     {
@@ -15,23 +18,23 @@ export const routes: Routes = [
     },
     {
         path:"login",
-        component: LoginComponent
-        // guardanoestalogeado
+        component: LoginComponent,
+        canActivate: [isNotLoggedGuard]
     },
     {
         path:"signup",
-        component: SignupComponent
-        // guardanoestalogeado
+        component: SignupComponent,
+        canActivate: [isNotLoggedGuard]
     },
     {
         path: "me",
-        component: MeComponent
-        // guardaEstalogeadoUsuario
+        component: MeComponent,
+        canActivate: [isLoggedGuard]
     },
     {
         path: "admin",
         component: AdminComponent,
-        // guardaEsadmin
+        canActivate: [isAdminGuard],
         children:[
             {
                 path: "books",
