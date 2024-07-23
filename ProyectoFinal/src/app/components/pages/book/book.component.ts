@@ -44,7 +44,6 @@ export class BookComponent implements OnInit {
     return stars
   }
   
-
   ngOnInit(): void {
     
   }
