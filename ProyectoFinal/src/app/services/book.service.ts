@@ -32,20 +32,27 @@ export class BookService {
   }
 
 
-  getAllBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.url, { headers: this.getAuthHeaders() });
+  getAllBooks() {
+    return this.http.get(this.url)
   }
 
-  getBookById(id: string): Observable<Book> {
-    return this.http.get<Book>(`${this.url}/${id}`, { headers: this.getAuthHeaders() });
+  getBookById(id: string){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.user?.token}`})
+
+    return this.http.get(`${this.url}/user/${id}`,{headers});
   }
 
-  addBook(vehicle: Book): Observable<Book> {
-    return this.http.post<Book>(this.url, vehicle, { headers: this.getAuthHeaders() });
+  addBook(book: Book): Observable<Book> {
+   console.log(book)
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.user?.token}`})
+
+    return this.http.post<Book>(this.url, book, { headers});
   }
 
-  updateBook(id: string, vehicle: Book): Observable<any> {
-    return this.http.patch(`${this.url}/${id}`, vehicle, { headers: this.getAuthHeaders() });
+  updateBook(id: string, book: Book): Observable<any> {
+    return this.http.patch(`${this.url}/${id}`, book, { headers: this.getAuthHeaders() });
   }
 
   deleteBook(id: string): Observable<any> {

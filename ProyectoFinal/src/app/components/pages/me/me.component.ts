@@ -3,6 +3,8 @@ import { BookService } from '../../../services/book.service';
 import { ReviewsService } from '../../../services/reviews.service';
 import { Book } from '../../../interfaces/book';
 import Swal from 'sweetalert2';
+import { User } from '../../../interfaces/user';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-me',
@@ -13,24 +15,40 @@ import Swal from 'sweetalert2';
 })
 export class MeComponent {
   books: Book[] = [];
-  user: {
-    _id: string;
-    username: string;
-    email: string; //Cambiado a string provisionalmente
+  user!: User
+  // user: {
+  //   _id: string;
+  //   username: string;
+  //   email: string; //Cambiado a string provisionalmente
     
-    image: string;
+  //   image: string;
     
-  };
+  // };
 
-  constructor(private bookService: BookService, private reviewsService: ReviewsService) {
+  constructor(private bookService: BookService, private reviewsService: ReviewsService, private authService: AuthService) {
+    this.bookService.getByUserId(authService.user!.id).subscribe({
+      next: (response)=>{
+        this.books = response as Book[]
+      },
+      error: (err)=>{
+        console.log("error al obtener los libros", err)
+
+      }
+    })
+
+
+
+
+
+
     // SOLO EJEMPLO
-    this.user = {
-      _id: '1',
-      username: 'La casa de los espíritus',
-     email: 'Isabel Allende',
-      image: 'https://m.media-amazon.com/images/I/611zbT8CveL._AC_UF894,1000_QL80_.jpg',
+    // this.user = {
+    //   _id: '1',
+    //   username: 'La casa de los espíritus',
+    //  email: 'Isabel Allende',
+    //   image: 'https://m.media-amazon.com/images/I/611zbT8CveL._AC_UF894,1000_QL80_.jpg',
   
-    };
+    // };
   }
 
   //AGREGAR UN NUEVO LIBRO
@@ -51,12 +69,8 @@ export class MeComponent {
           <input id="genre" type="text" class="form-control">
         </div>
         <div>
-          <label class="form-label">Año de publicación</label>
-          <input id="publicationYear" type="number" class="form-control">
-        </div>
-        <div>
           <label class="form-label">Año</label>
-          <input id="year" type="number" class="form-control">
+          <input id="publicationDate" type="number" class="form-control">
         </div>
         <div>
           <label class="form-label">Sinópsis</label>
@@ -82,14 +96,14 @@ export class MeComponent {
         const title = (document.getElementById('title') as HTMLInputElement).value;
         const author = (document.getElementById('author') as HTMLInputElement).value;
         const genre = (document.getElementById('genre') as HTMLInputElement).value;
-        const year = parseInt((document.getElementById('publicationYear') as HTMLInputElement).value, 10);
+        const publicationDate = parseInt((document.getElementById('publicationDate') as HTMLInputElement).value);
         const synopsis = (document.getElementById('synopsis') as HTMLInputElement).value;
         const image = (document.getElementById('image') as HTMLInputElement).value;
-        const rating = parseInt((document.getElementById('rating') as HTMLInputElement).value, 10);//parseFloat??
+        const rating = parseInt((document.getElementById('rating') as HTMLInputElement).value);//parseFloat??
         const review = (document.getElementById('review') as HTMLInputElement).value;
         
   
-        return { author, title, rating, genre, synopsis, year, image };
+        return { author, title, rating, genre, synopsis, publicationDate, image, review };
       }
     }).then((result) => {
       if (result.isConfirmed) {
