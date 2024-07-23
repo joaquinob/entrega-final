@@ -1,5 +1,18 @@
+import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../services/auth.service';
+
+
 
 export const isAdminGuard: CanActivateFn = (route, state) => {
-  return true;
+  const cookieService = inject(CookieService)
+  const authService = inject(AuthService)
+
+  if(authService.user?.role === "admin"){
+    return true
+  }
+  else{
+    return false
+  }
 };
