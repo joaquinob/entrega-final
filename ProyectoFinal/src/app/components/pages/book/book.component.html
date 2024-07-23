@@ -16,7 +16,8 @@
       <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
       <button class="btn btn-outline-primary">Agregar reseña</button>
       <!--@if(user.role === 'admin'){
-        <button class="btn btn-outline-primary">Editar</button>
+        <button (click)="editar(book._id)" class="btn btn-outline-secondary">Editar</button>
+        <button (click)="eliminar(book._id)" class="btn btn-outline-danger">Eliminar</button>
       }-->
     </div>
   </div>
