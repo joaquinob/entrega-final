@@ -30,6 +30,8 @@ export class BookService {
     // get autorizado
 
   }
+
+
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.url, { headers: this.getAuthHeaders() });
   }
@@ -48,5 +50,6 @@ export class BookService {
 
   deleteBook(id: string): Observable<any> {
     return this.http.delete(`${this.url}/${id}`, { headers: this.getAuthHeaders() });
+
   }
 }
