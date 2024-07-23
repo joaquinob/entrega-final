@@ -45,4 +45,8 @@ export class AuthService {
     }
     return this.user
   }
+  deleteUser(){
+    this.user = null
+    this.cookieService.delete("user")
+  }
 }

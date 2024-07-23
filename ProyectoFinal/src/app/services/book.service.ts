@@ -20,4 +20,7 @@ export class BookService {
     // get autorizado
 
   }
+  getAll(){
+    return this.http.get(this.url)
+  }
 }
