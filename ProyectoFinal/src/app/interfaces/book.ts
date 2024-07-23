@@ -1,6 +1,7 @@
 import { Author } from "./author"
 import { Genre } from "./genre"
 import { Ratings } from "./ratings"
+import { User } from "./user"
 
 export interface Book {
    _id: string
@@ -12,6 +13,7 @@ export interface Book {
    synopsis: string
    averageStars: number // será un valor probablemente decimal
    rating: Ratings[]
+   user?: User 
 
 
 }

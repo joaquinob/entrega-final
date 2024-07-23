@@ -40,7 +40,7 @@ export class BookService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.user?.token}`})
 
-    return this.http.get(`${this.url}/user/${id}`,{headers});
+      return this.http.get(`${this.url}/user/${id}`,{headers})
   }
 
   addBook(book: Book): Observable<Book> {

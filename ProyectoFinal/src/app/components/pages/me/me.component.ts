@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../../services/book.service';
 import { ReviewsService } from '../../../services/reviews.service';
 import { Book } from '../../../interfaces/book';
 import Swal from 'sweetalert2';
 import { User } from '../../../interfaces/user';
 import { AuthService } from '../../../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-me',
@@ -13,28 +16,38 @@ import { AuthService } from '../../../services/auth.service';
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })
-export class MeComponent {
+export class MeComponent implements OnInit {
   books: Book[] = [];
   user!: User
+  token!: string 
   // user: {
   //   _id: string;
   //   username: string;
   //   email: string; //Cambiado a string provisionalmente
-    
+
   //   image: string;
-    
+
   // };
 
-  constructor(private bookService: BookService, private reviewsService: ReviewsService, private authService: AuthService) {
-    this.bookService.getByUserId(authService.user!.id).subscribe({
-      next: (response)=>{
-        this.books = response as Book[]
-      },
-      error: (err)=>{
-        console.log("error al obtener los libros", err)
+  constructor(
+    private bookService: BookService,
+    private reviewsService: ReviewsService,
+    private authService: AuthService,
+    private cookieService: CookieService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private builder: FormBuilder) {
 
-      }
-    })
+   
+      // this.bookService.getByUserId(authService.user!.id).subscribe({
+      // next: (response) => {
+      //   this.books = response as Book[]
+      // },
+      // error: (err) => {
+      //   console.log("error al obtener los libros", err)
+
+    //   }
+    // })
 
 
 
@@ -47,10 +60,13 @@ export class MeComponent {
     //   username: 'La casa de los espíritus',
     //  email: 'Isabel Allende',
     //   image: 'https://m.media-amazon.com/images/I/611zbT8CveL._AC_UF894,1000_QL80_.jpg',
-  
+
     // };
   }
-
+ngOnInit(){
+this.token = this.cookieService.get('user')
+console.log(this.token)
+}
   //AGREGAR UN NUEVO LIBRO
   addNewBook() {
     Swal.fire({
@@ -88,6 +104,9 @@ export class MeComponent {
           <label class="form-label">Reseña</label>
           <input id="review" type="text" class="form-control">
         </div>
+        <div>
+         <label class="form-label">Like?</label>
+        <input id="like" type="checkbox" class="form-control">
       </div>`,
       showCancelButton: true,
       confirmButtonText: 'Agregar',
@@ -101,15 +120,17 @@ export class MeComponent {
         const image = (document.getElementById('image') as HTMLInputElement).value;
         const rating = parseInt((document.getElementById('rating') as HTMLInputElement).value);//parseFloat??
         const review = (document.getElementById('review') as HTMLInputElement).value;
-        
-  
-        return { author, title, rating, genre, synopsis, publicationDate, image, review };
+        const like = (document.getElementById('like') as HTMLInputElement).value
+        // const token = this.token 
+
+
+        return { author, title, rating, genre, synopsis, publicationDate, image, review, like };
       }
     }).then((result) => {
       if (result.isConfirmed) {
         const newBook = result.value;
         this.bookService.addBook(newBook).subscribe({
-          next: (response:any) => {
+          next: (response: any) => {
             Swal.fire({
               title: 'Has agregado un nuevo libro!',
               text: 'Gracias por tu aporte a la comunidad',
@@ -133,7 +154,7 @@ export class MeComponent {
         });
       }
     });
-  }  
-  
+  }
+
 
 }
