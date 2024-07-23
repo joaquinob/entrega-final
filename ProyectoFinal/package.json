@@ -18,10 +18,14 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+<<<<<<< HEAD
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "sweetalert2": "^11.6.13",
     "bootstrap": "^5.3.3",
     "ngx-cookie-service": "^18.0.0",
+=======
+    "bootstrap": "^5.3.3",
+>>>>>>> be86af034adfe9e156ce4219eeaf420fcf437ce2
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.3"
   },
