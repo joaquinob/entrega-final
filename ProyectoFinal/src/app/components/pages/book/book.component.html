@@ -35,8 +35,10 @@
         <p class="card-text">Género: {{ book.genre }}</p>
         <p class="card-text">Año de publicación: {{ book.publicationDate | formatDate}}</p>
         <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
-        @if (authService.user ){
-        <button class="btn btn-outline-primary">Agregar reseña</button>}
+
+        <p class="card-text">Subido por {{ book.user }}</p>
+        <button class="btn btn-outline-primary">Agregar reseña</button>
+
       </div>
     </div>
     </li>
