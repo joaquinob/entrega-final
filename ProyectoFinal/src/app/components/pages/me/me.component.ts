@@ -48,12 +48,6 @@ export class MeComponent implements OnInit {
 
     //   }
     // })
-
-
-
-
-
-
     // SOLO EJEMPLO
     // this.user = {
     //   _id: '1',
@@ -65,6 +59,7 @@ export class MeComponent implements OnInit {
   }
 ngOnInit(){
 this.token = this.cookieService.get('user')
+this.user = this.authService.getUser() as User;
 console.log(this.token)
 }
   //AGREGAR UN NUEVO LIBRO
@@ -103,11 +98,7 @@ console.log(this.token)
         <div>
           <label class="form-label">Reseña</label>
           <input id="review" type="text" class="form-control">
-        </div>
-        <div>
-         <label class="form-label">Like?</label>
-        <input id="like" type="checkbox" class="form-control">
-      </div>`,
+        </div>`,
       showCancelButton: true,
       confirmButtonText: 'Agregar',
       cancelButtonText: 'Cancelar',
@@ -120,11 +111,11 @@ console.log(this.token)
         const image = (document.getElementById('image') as HTMLInputElement).value;
         const rating = parseInt((document.getElementById('rating') as HTMLInputElement).value);//parseFloat??
         const review = (document.getElementById('review') as HTMLInputElement).value;
-        const like = (document.getElementById('like') as HTMLInputElement).value
         // const token = this.token 
+        
 
 
-        return { author, title, rating, genre, synopsis, publicationDate, image, review, like };
+        return { author, title, rating, genre, synopsis, publicationDate, image, review};
       }
     }).then((result) => {
       if (result.isConfirmed) {
@@ -138,7 +129,7 @@ console.log(this.token)
               showConfirmButton: false,
               timer: 2000
             });
-            this.books.push(response.vehicle as Book);
+            this.books.push(response.books as Book);
             console.log(this.books)
           },
           error: (error) => {
