@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../../interfaces/book';
 import { BookService } from '../../../services/book.service';
+import { AuthService } from '../../../services/auth.service';
+import { formatDate } from '@angular/common';
+import { FormatDatePipe } from '../../../pipes/format-date.pipe';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [],
+  imports: [FormatDatePipe],
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
@@ -23,7 +26,9 @@ export class BookComponent implements OnInit {
   //   synopsis: string; 
   // };
 
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService,
+    public authService: AuthService
+  ) {
     bookService.getAllBooks().subscribe({
       next:(response)=>{
         this.books = response as Book[]

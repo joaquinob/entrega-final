@@ -1,4 +1,30 @@
-<section>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140"  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Libros de verano</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+          <h2 class="fw-normal">Libros de verano</h2>
+          <p>Descubre tu próxima lectura bajo el sol</p>
+          <p><a class="btn btn-secondary" href="/stations">Leer »</a></p>
+        </div>
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Los libros más vendidos</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+          <h2 class="fw-normal">Los libros más vendidos</h2>
+          <p>Descubre los libros más populares del año</p>
+        <p><a class="btn btn-secondary" href="/bestSeller">Leer »</a></p>
+        </div>
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Novedades</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+          <h2 class="fw-normal">Novedades Literarias</h2>
+          <p>Descubre las Últimas Publicaciones</p>
+          <p><a class="btn btn-secondary" href="/new">Leer »</a></p>
+        </div>
+      </div>
 </section>
 
+<section class="section2">
+<input [(ngModel)]="filtro" type="text" class="form-control" placeholder="Filtrar Libros">
+</section>
+
+<section>
 <app-book></app-book>
+</section>
