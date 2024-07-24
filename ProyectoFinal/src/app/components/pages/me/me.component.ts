@@ -8,11 +8,12 @@ import { AuthService } from '../../../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { ReviewComponent } from './review/review.component';
 
 @Component({
   selector: 'app-me',
   standalone: true,
-  imports: [],
+  imports: [ReviewComponent],
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })
@@ -20,15 +21,6 @@ export class MeComponent implements OnInit {
   books: Book[] = [];
   user!: User
   token!: string 
-  // user: {
-  //   _id: string;
-  //   username: string;
-  //   email: string; //Cambiado a string provisionalmente
-
-  //   image: string;
-
-  // };
-
   constructor(
     private bookService: BookService,
     private reviewsService: ReviewsService,
@@ -39,23 +31,16 @@ export class MeComponent implements OnInit {
     private builder: FormBuilder) {
 
    
-      // this.bookService.getByUserId(authService.user!.id).subscribe({
-      // next: (response) => {
-      //   this.books = response as Book[]
-      // },
-      // error: (err) => {
-      //   console.log("error al obtener los libros", err)
+      this.bookService.getByUserId(authService.user!.id).subscribe({
+      next: (response) => {
+        this.books = response as Book[]
+      },
+      error: (err) => {
+        console.log("error al obtener los libros", err)
 
-    //   }
-    // })
-    // SOLO EJEMPLO
-    // this.user = {
-    //   _id: '1',
-    //   username: 'La casa de los espíritus',
-    //  email: 'Isabel Allende',
-    //   image: 'https://m.media-amazon.com/images/I/611zbT8CveL._AC_UF894,1000_QL80_.jpg',
-
-    // };
+      }
+    })
+  
   }
 ngOnInit(){
 this.token = this.cookieService.get('user')

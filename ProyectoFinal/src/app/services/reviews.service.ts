@@ -20,4 +20,11 @@ export class ReviewsService {
     // get autorizado
 
   }
+  addReview(bookId: string, rating: number, review: string) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.user?.token}`,
+    });
+    return this.http.put(`${this.url}/${this.authService.user?.id}/${bookId}`, {rating, review}, {headers});
+  }
+
 }
