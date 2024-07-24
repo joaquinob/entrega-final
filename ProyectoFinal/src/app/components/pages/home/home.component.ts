@@ -16,5 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class HomeComponent {
   books: Book[] = []
 filtro: string = ""
+
+
 searchText(){}
 }
