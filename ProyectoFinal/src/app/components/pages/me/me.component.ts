@@ -8,11 +8,12 @@ import { AuthService } from '../../../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { ReviewComponent } from './review/review.component';
 
 @Component({
   selector: 'app-me',
   standalone: true,
-  imports: [],
+  imports: [ReviewComponent],
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })

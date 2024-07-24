@@ -9,9 +9,6 @@ import { filter } from 'rxjs';
 export class FiltrarPipe implements PipeTransform {
 
   transform(value: Book[], filtro: string): Book[] {
-
-    console.log(value)
-    console.log(filtro)
     return value.filter(x=> x.title.toLowerCase().includes(filtro)
      || x.genre.toLocaleLowerCase().includes(filtro)
      ||  x.author.toLocaleLowerCase().includes(filtro))

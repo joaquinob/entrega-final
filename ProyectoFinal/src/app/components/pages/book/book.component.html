@@ -43,7 +43,7 @@
 
         <p class="card-text">Subido por {{ book.user }}</p>
         @if (authService.user) {
-        <button class="btn btn-outline-primary">Agregar reseña</button>}
+        <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Agregar reseña</a></button>}
 
       </div>
     </div>
