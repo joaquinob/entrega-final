@@ -10,6 +10,9 @@ import { ReviewsComponent } from './components/pages/admin/reviews/reviews.compo
 import { isNotLoggedGuard } from './guards/is-not-logged.guard';
 import { isLoggedGuard } from './guards/is-logged.guard';
 import { isAdminGuard } from './guards/is-admin.guard';
+import { StationsSectionComponent } from './components/pages/home/stations-section/stations-section.component';
+import { BestSellerComponent } from './components/pages/home/best-seller/best-seller.component';
+import { NewComponent } from './components/pages/home/new/new.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +33,18 @@ export const routes: Routes = [
         path: "me",
         component: MeComponent,
         canActivate: [isLoggedGuard]
+    },
+    {
+        path: "stations",
+        component: StationsSectionComponent
+    },{
+        path: "bestSeller",
+        component: BestSellerComponent
+
+    },{
+        path:"new",
+        component: NewComponent
+
     },
     {
         path: "admin",
