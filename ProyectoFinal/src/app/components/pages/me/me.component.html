@@ -1,6 +1,6 @@
 <div>
 <div class="card" style="width: 18rem;" id="card-profile">
-    <img [src]="user.image" class="card-img-top" alt="...">
+    <img [src]="user" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{user.username}}</h5>
     
@@ -12,13 +12,15 @@
   </div>
 <div>
 <div id="mybooks">
+
+  
 @if(books.length === 0){
     <p>no tienes libros </p>
 } @else {
     @for (book of books; track book) {
         <p class="card-text">Autor: {{ book.author }}</p>
       <p class="card-text">Género: {{ book.genre }}</p>
-      <p class="card-text">Año de publicación: {{ book.publicationYear }}</p>
+      <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
       <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
       <p class="card-text">Sinopsis: {{ book.rating}}</p>
     }
@@ -26,9 +28,14 @@
 }
 </div>
 <div id="myreview">
-
+<app-review></app-review>
 </div>
-</div>
+</div >
+<div id="addbook">
 
+        <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Book</button>
+       
+      
+</div>
 
 </div>

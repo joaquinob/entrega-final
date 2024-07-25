@@ -1,0 +1,39 @@
+@if(reviews.length === 0){
+    <div class="alert alert-warning">
+      <i class="fa fa-circle-info"></i>
+      No tienes reserñas todavía
+    </div>
+    } @else {
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Puntuación</th>
+          <th scope="col">Comentario</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        @for(review of reviews; track review){
+        <tr>
+          <!-- <td>
+            <button [disabled]="!(booking.startDate | canCancel)" (click)="eliminar(booking._id)" class="btn btn-danger btn-sm me-1"> -->
+              <!-- <i class="fa fa-trash"></i>
+            </button>
+            <button [disabled]="!(booking.startDate | canCancel)" (click)="editar(booking._id)" class="btn btn-primary btn-sm"> -->
+              <!-- <i class="fa fa-pencil"></i>
+            </button> -->
+          <!-- </td> -->
+          <!-- <td>{{ review.book.title }}</td>
+          <td>{{ review.book.author }}</td> -->
+          <td>{{ review.rating }}</td>
+          <td>{{ review.review }}</td>
+        
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+    

@@ -14,6 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService) { 
     if (cookieService.check('user')){
       this.user = JSON.parse(cookieService.get('user'))
+    
     }
   }
 

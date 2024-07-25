@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+#libros-mas-vendidos {
+    background-color: #ffffff;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#libros-mas-vendidos h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #343a40;
+}
+#libros-mas-vendidos h3 {
+    margin-top: 1.5rem;
+    color: #007bff;
+}
+#libros-mas-vendidos p {
+    color: #495057;
+}
+#libros-mas-vendidos ul {
+    padding-left: 1rem;
+}
+#libros-mas-vendidos ul li {
+    margin-bottom: 1rem;
+}
+#libros-mas-vendidos ul li strong {
+    color: #343a40;
+}

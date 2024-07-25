@@ -1,12 +1,12 @@
-<div class="card" style="width: 18rem;">
+<!-- <div class="card" style="width: 18rem;">
     <img [src]="book.image" class="card-img-top" alt="{{ book.title }}" height="160">
     <div class="card-body">
       <h5 class="card-title">{{ book.title }}</h5>
       @for(star of fullStars; track star){
         <i class="fa fa-star"></i>
-    }
+    } --> 
    
-    @if(fullStars.length < book.rating){
+    <!-- @if(fullStars.length < book.rating){
         <i class="fa fa-star-half-stroke"></i>
     }
 
@@ -15,10 +15,37 @@
       <p class="card-text">Año de publicación: {{ book.publicationYear }}</p>
       <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
       <button class="btn btn-outline-primary">Agregar reseña</button>
-      <!--@if(user.role === 'admin'){
+      @if(user.role === 'admin'){
         <button (click)="editar(book._id)" class="btn btn-outline-secondary">Editar</button>
         <button (click)="eliminar(book._id)" class="btn btn-outline-danger">Eliminar</button>
-      }-->
+      }
     </div>
   </div>
+ -->
+ <section class="section2">
+  <input [(ngModel)]="filtro" type="text" class="form-control" placeholder="Filtrar Libros">
+  </section>
+
+
+ <ul class="row list-unstyled">
+  @for (book  of (books | filtrar : filtro ); track book ) {
+    <li class="col-md-6 col-sm-12 col-lg-3 my-1">
+    <div class="card h-100" style="width: 18rem;">
+      <img [src]="book.image" class="card-img-top" alt="{{ book.title }}" height="160">
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+      
   
+        <p class="card-text">Autor: {{ book.author }}</p>
+        <p class="card-text">Género: {{ book.genre }}</p>
+        <p class="card-text">Año de publicación: {{ book.publicationDate | formatDate}}</p>
+        <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
+
+        <p class="card-text">Subido por {{ book.user }}</p>
+        @if (authService.user) {
+        <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Agregar reseña</a></button>}
+
+      </div>
+    </div>
+    </li>
+  }

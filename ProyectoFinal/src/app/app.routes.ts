@@ -10,19 +10,30 @@ import { ReviewsComponent } from './components/pages/admin/reviews/reviews.compo
 import { isNotLoggedGuard } from './guards/is-not-logged.guard';
 import { isLoggedGuard } from './guards/is-logged.guard';
 import { isAdminGuard } from './guards/is-admin.guard';
+import { StationsSectionComponent } from './components/pages/home/stations-section/stations-section.component';
+import { BestSellerComponent } from './components/pages/home/best-seller/best-seller.component';
+import { NewComponent } from './components/pages/home/new/new.component';
+import { AddReviewComponent } from './components/pages/book/add-review/add-review.component';
 
 export const routes: Routes = [
     {
-        path:"",
-        component: HomeComponent
+        path: "",
+        component: HomeComponent,
     },
+
     {
-        path:"login",
+        path: "addReview/:id",
+        component: AddReviewComponent
+    }
+
+    ,
+    {
+        path: "login",
         component: LoginComponent,
         canActivate: [isNotLoggedGuard]
     },
     {
-        path:"signup",
+        path: "signup",
         component: SignupComponent,
         canActivate: [isNotLoggedGuard]
     },
@@ -32,10 +43,22 @@ export const routes: Routes = [
         canActivate: [isLoggedGuard]
     },
     {
+        path: "stations",
+        component: StationsSectionComponent
+    }, {
+        path: "bestSeller",
+        component: BestSellerComponent
+
+    }, {
+        path: "new",
+        component: NewComponent
+
+    },
+    {
         path: "admin",
         component: AdminComponent,
         canActivate: [isAdminGuard],
-        children:[
+        children: [
             {
                 path: "books",
                 component: BooksComponent
@@ -45,7 +68,7 @@ export const routes: Routes = [
                 component: UsersComponent
             },
             {
-                path:"reviews",
+                path: "reviews",
                 component: ReviewsComponent
             }
         ]

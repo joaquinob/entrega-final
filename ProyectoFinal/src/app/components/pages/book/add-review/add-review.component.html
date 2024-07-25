@@ -1,0 +1,43 @@
+<div class="row">
+    @if(book){
+    <div class="col-md-5">
+      <div>
+        <img [src]="book.image" width="350" alt="" />
+  
+        <p>{{ book.title }}</p>
+        <p>{{ book.author}}</p>
+        
+      </div>
+    </div>
+    <div class="col-md-1 col-lg-1 d-none d-md-block">
+      <div class="separador"></div>
+    </div>
+    <div class="d-block d-sm-none">
+      <hr />
+    </div>
+    <div class="col-md-5">
+      <form [formGroup]="form" (ngSubmit)="enviar()">
+        <div class="mb-3">
+          <label class="form-label" for="">Puntuación:</label>
+          <input formControlName="rating" class="form-control" type="number" />
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label" for="">Comentario:</label>
+          <input formControlName="review"  class="form-control" type="text" />
+        </div>
+  
+        <div>
+         
+        </div>
+  
+  
+      
+<button class="btn btn-success">Reservar</button>
+
+
+      </form>
+    </div>
+    }
+  </div>
+  
