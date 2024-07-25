@@ -1,1 +1,47 @@
 <p>users works!</p>
+
+<div *ngIf="isAdmin">
+    <h1>Administrar Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <button (click)="editUser(user.id)">Edit</button>
+                    <button (click)="deleteUser(user.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="user.id">
+        <h2>Editar Usuario</h2>
+        <form (ngSubmit)="updateUser()">
+            <label>
+                Username:
+                <input [(ngModel)]="user.username" name="username" required>
+            </label>
+            <label>
+                Email:
+                <input [(ngModel)]="user.email" name="email" required>
+            </label>
+            <label>
+                Role:
+                <input [(ngModel)]="user.role" name="role" required>
+            </label>
+            <button type="submit">Actualizar</button>
+        </form>
+    </div>
+</div>
+<div *ngIf="!isAdmin">
+    <p>No tienes permiso para administrar usuarios.</p>
+</div>
