@@ -17,9 +17,10 @@ export class ReviewsService {
       'Authorization': `Bearer ${this.authService.user?.token}`})
 
     return this.http.get(`${this.url}/user/${userid}`,{headers})
-    // get autorizado
+    
 
   }
+
   addReview(bookId: string, rating: number, review: string) {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.user?.token}`,

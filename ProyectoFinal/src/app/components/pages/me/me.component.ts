@@ -44,8 +44,9 @@ export class MeComponent implements OnInit {
   }
 ngOnInit(){
 this.token = this.cookieService.get('user')
-this.user = this.authService.getUser() as User;
+this.user = this.authService.getUserCookie() as User;
 console.log(this.token)
+console.log(this.user)
 }
   //AGREGAR UN NUEVO LIBRO
   addNewBook() {

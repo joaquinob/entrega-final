@@ -14,7 +14,7 @@ export class BookService {
   ) { }
 
   private getAuthHeaders(): HttpHeaders {
-    const user = this.authService.getUser();
+    const user = this.authService.getUserCookie();
     const token = user ? user.token : null;
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`

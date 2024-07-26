@@ -18,6 +18,7 @@ constructor(private reviewService: ReviewsService, private authService : AuthSer
   this.reviewService.getByUserId(authService.user!.id).subscribe({
     next: (response)=>{
       this.reviews = response as Review[]
+      console.log(this.reviews)
     },
     error: (err)=>{
       console.log("error al obtener las reseñas", err)

@@ -35,11 +35,13 @@ constructor(private reviewService: ReviewsService,
   });
   route.paramMap.subscribe((params) => {
     this.parametro = params.get('id');
+    console.log(this.parametro)
   });
   if (this.parametro !== null) {
     bookService.getByUserId(this.parametro).subscribe({
       next: (response) => {
         this.book = response as Book;
+        console.log(this.book)
       },
       error: () => {},
     });
