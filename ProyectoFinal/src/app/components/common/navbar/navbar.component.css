@@ -1,0 +1,27 @@
+.navbar {
+    background-color: #D2691E; /* Color teja */
+}
+.navbar-brand,
+.nav-link,
+.navbar-toggler-icon {
+    color: #556B2F !important; /* Color verde oliva */
+}
+.nav-link.active {
+    color: #6B8E23 !important; /* Color verde oliva más claro para el enlace activo */
+}
+.dropdown-menu {
+    background-color: #d47837; /* Color teja para el menú desplegable */
+}
+.dropdown-item {
+    color: #556B2F !important; /* Color verde oliva para los elementos del menú */
+}
+.dropdown-item:hover {
+    background-color: #A0522D; /* Color teja más oscuro para hover */
+    color: #6B8E23 !important; /* Color verde oliva más claro para hover */
+}
+.btn-link {
+    color: #556B2F !important; /* Color verde oliva para el botón de logout */
+}
+.btn-link:hover {
+    color: #6B8E23 !important; /* Color verde oliva más claro para hover */
+}

@@ -1,41 +1,52 @@
-<div>
-<div class="card" style="width: 18rem;" id="card-profile">
-    <img [src]="user" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{user.username}}</h5>
-    
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{user.email}}</li>
-     
-    </ul>
-  </div>
-<div>
-<div id="mybooks">
+<div class="container mt-5">
+  <div class="row">
+      <!-- Columna para el perfil del usuario -->
+      <div class="col-md-4">
+          <div class="card" style="width: 18rem;" id="card-profile">
+             
+              <div class="card-body">
+                  <h5 class="card-title">{{user.username}}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{user.email}}</li>
+              </ul>
+          </div>
+      </div>
 
-  
-@if(books.length === 0){
-    <p>no tienes libros </p>
-} @else {
-    @for (book of books; track book) {
-        <p class="card-text">Autor: {{ book.author }}</p>
-      <p class="card-text">Género: {{ book.genre }}</p>
-      <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
-      <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
-      <p class="card-text">Sinopsis: {{ book.rating}}</p>
-    }
-
-}
-</div>
-<div id="myreview">
-<app-review></app-review>
-</div>
-</div >
-<div id="addbook">
-
-        <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Book</button>
-       
       
-</div>
-
-</div>
+      <div class="container mt-5">
+        <!-- Sección de Libros -->
+        <div id="books-section">
+            @if(books.length === 0) {
+                <div class="alert alert-warning">
+                    <i class="fa fa-circle-info"></i>
+                    No tienes libros
+                </div>
+            } @else {
+                @for (book of books; track book) {
+                    <div class="book-card">
+                        <img src="{{ book.image }}" alt="{{ book.title }}">
+                        <div class="book-card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">Autor: {{ book.author }}</p>
+                            <p class="card-text">Género: {{ book.genre }}</p>
+                            <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
+                            <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
+                            <p class="card-text">Rating: {{ book.rating }}</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    
+        <!-- Sección de Reseñas -->
+        <div id="myreview">
+            <app-review></app-review>
+        </div>
+    
+        <!-- Botón para Añadir Libro -->
+        <div id="addbook" class="mt-4">
+            <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Libro</button>
+        </div>
+    </div>
+  </div>

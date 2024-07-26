@@ -29,8 +29,8 @@
 
  <ul class="row list-unstyled">
   @for (book  of (books | filtrar : filtro ); track book ) {
-    <li class="col-md-6 col-sm-12 col-lg-3 my-1">
-    <div class="card h-100" style="width: 18rem;">
+    <li class="col-md-6 col-sm-12 col-lg-2 my-1">
+    <div class="card h-80" style="width: 14rem;">
       <img [src]="book.image" class="card-img-top" alt="{{ book.title }}" height="160">
       <div class="card-body">
         <h5 class="card-title">{{ book.title }}</h5>

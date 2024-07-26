@@ -1,0 +1,37 @@
+#books-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.book-card {
+    width: 200px; /* Ajusta el ancho según tus necesidades */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.book-card img {
+    width: 100%;
+    height: auto;
+}
+.book-card-body {
+    padding: 10px;
+}
+.book-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.btn-outline-secondary {
+    margin-top: 20px;
+}
+#myreview {
+    margin-top: 30px;
+}
+.alert-warning {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+.fa-circle-info {
+    margin-right: 10px;
+}

@@ -7,17 +7,18 @@ import { BookService } from '../../../../services/book.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Review } from '../../../../interfaces/review';
+import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
 
 @Component({
   selector: 'app-add-review',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule,FormatDatePipe ],
   templateUrl: './add-review.component.html',
   styleUrl: './add-review.component.css'
 })
 export class AddReviewComponent {
   parametro: string | null = null;
-  book: Book | null = null;
+  book!: Book 
   form! : FormGroup
 
 constructor(private reviewService: ReviewsService,
