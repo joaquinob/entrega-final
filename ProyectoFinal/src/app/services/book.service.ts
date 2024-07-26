@@ -31,18 +31,18 @@ export class BookService {
 
   }
 
-
+// obtener todos
   getAllBooks() {
     return this.http.get(this.url)
   }
-
+// obtener expecifico
   getBookById(id: string){
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.user?.token}`})
 
-      return this.http.get(`${this.url}/user/${id}`,{headers})
+      return this.http.get(`${this.url}/${id}`,{headers})
   }
-
+// añadir
   addBook(book: Book): Observable<Book> {
    console.log(book)
     const headers = new HttpHeaders({
@@ -51,12 +51,21 @@ export class BookService {
     return this.http.post<Book>(this.url, book, { headers});
   }
 
-  updateBook(id: string, book: Book): Observable<any> {
-    return this.http.patch(`${this.url}/${id}`, book, { headers: this.getAuthHeaders() });
+  
+// eliminar libro
+  deleteBook(bookId: string){
+    const headers= new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.user?.token}`})
+  
+    return this.http.delete(`${this.url}/${bookId}`,{headers});
   }
-
-  deleteBook(id: string): Observable<any> {
-    return this.http.delete(`${this.url}/${id}`, { headers: this.getAuthHeaders() });
-
-  }
+  
+  // editar
+editar(bookId: string, bookEdit: Book){
+  const headers= new HttpHeaders({
+    'Authorization': `Bearer ${this.authService.user?.token}`
+  })
+  return this.http.put(`${this.url}/${this.authService.user?.id}/${bookId}`, {bookEdit}, {headers});
+  
+}
 }

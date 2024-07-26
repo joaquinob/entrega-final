@@ -21,11 +21,20 @@ export class ReviewsService {
 
   }
 
+
   addReview(bookId: string, rating: number, review: string) {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.authService.user?.token}`,
+    const body = JSON.stringify({
+      rating, review
     });
-    return this.http.put(`${this.url}/${this.authService.user?.id}/${bookId}`, {rating, review}, {headers});
-  }
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.user?.token}`,
+      'Content-Type': 'application/json'  // Añadir Content-Type
+    })
+  
+    return this.http.post(`${this.url}/${bookId}`, body, { headers });
+  
+
+}
 
 }
