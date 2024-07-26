@@ -38,10 +38,11 @@ constructor(private reviewService: ReviewsService,
     console.log(this.parametro)
   });
   if (this.parametro !== null) {
-    bookService.getByUserId(this.parametro).subscribe({
+    bookService.getBookById(this.parametro).subscribe({
       next: (response) => {
         this.book = response as Book;
         console.log(this.book)
+        console.log(response)
       },
       error: () => {},
     });
@@ -49,7 +50,7 @@ constructor(private reviewService: ReviewsService,
 }
 
 enviar(){
-  this.reviewService.addReview(this.book!._id, this.form.value.review,this.form.value.rating).subscribe({
+  this.reviewService.addReview(this.book!._id,this.form.value.rating, this.form.value.review).subscribe({
     next:()=>{
       Swal.fire({
         title: "Reseña realizada",

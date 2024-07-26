@@ -34,8 +34,10 @@ export class MeComponent implements OnInit {
       this.bookService.getByUserId(authService.user!.id).subscribe({
       next: (response) => {
         this.books = response as Book[]
+        console.log(this.books)
       },
       error: (err) => {
+        console.log(this.authService.user?.id)
         console.log("error al obtener los libros", err)
 
       }
