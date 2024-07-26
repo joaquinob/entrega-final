@@ -40,12 +40,13 @@ export class AuthService {
     this.cookieService.set('user', JSON.stringify(user))
   }
 
-  getUser(): User | null {
+  getUserCookie(): User | null {
     if (this.user  === null && this.cookieService.check('user')){
       this.user = JSON.parse(this.cookieService.get('user'))
     }
     return this.user
   }
+
   deleteUser(){
     this.user = null
     this.cookieService.delete("user")

@@ -38,7 +38,7 @@ export class LoginComponent {
           email: loginResponse.email,
           username: loginResponse.username
         };
-
+console.log(response)
         this.authService.saveUser(user);
         this.router.navigateByUrl('/')
       },

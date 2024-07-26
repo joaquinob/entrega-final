@@ -1,35 +1,42 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f9f4ef; /* Beige nude clarito */
     margin: 0;
     padding: 0;
 }
+
 #libros-de-verano {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Fondo blanco para las tarjetas de libros */
     padding: 2rem;
     margin: 2rem auto;
     max-width: 800px;
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 #libros-de-verano h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #343a40;
+    color: #2d6a4f; /* Verde oliva */
 }
+
 #libros-de-verano h3 {
     margin-top: 1.5rem;
-    color: #8c00ff;
+    color: #2d6a4f; /* Verde oliva */
 }
+
 #libros-de-verano p {
-    color: #495057;
+    color: #495057; /* Gris oscuro */
 }
+
 #libros-de-verano ul {
     padding-left: 1rem;
 }
+
 #libros-de-verano ul li {
     margin-bottom: 1rem;
 }
+
 #libros-de-verano ul li strong {
-    color: #343a40;
+    color: #2d6a4f; /* Verde oliva */
 }
