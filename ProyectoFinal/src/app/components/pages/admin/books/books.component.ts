@@ -83,8 +83,8 @@ export class BooksComponent implements OnInit {
             <input id="author" type="string" class="form-control" value="${bookEdit.author}">
           </div>
           <div>
-            <label class="form-label">sinópsis</label>
-            <input id="publicationDate" type="number" class="form-control" value="${bookEdit.synopsis}">
+            <label class="form-label">Año</label>
+            <input id="publicationDate" type="number" class="form-control" value="${bookEdit.publicationDate}">
           </div>
           <div>
             <label class="form-label">Género</label>
@@ -105,17 +105,19 @@ export class BooksComponent implements OnInit {
         preConfirm: () => {
           const title = (document.getElementById('title') as HTMLInputElement).value;
           const author = (document.getElementById('author') as HTMLInputElement).value;
+          const publicationDate = (document.getElementById('publicationDate') as HTMLInputElement).value;
           const genre = (document.getElementById('genre') as HTMLInputElement).value;
           const synopsis = (document.getElementById('synopsis') as HTMLInputElement).value;
           const image = (document.getElementById('image') as HTMLInputElement).value;
 
-          return { title, author, genre, synopsis, image };
+          return { title, author,publicationDate, genre, synopsis, image };
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          const { title, author, genre, synopsis, image } = result.value;
+          const { title, author,publicationDate, genre, synopsis, image } = result.value;
           bookEdit.title = title;
           bookEdit.author = author;
+          bookEdit.publicationDate = publicationDate;
           bookEdit.genre = genre;
           bookEdit.synopsis = synopsis;
           bookEdit.image = image;
