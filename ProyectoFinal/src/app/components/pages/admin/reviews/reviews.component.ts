@@ -51,7 +51,7 @@ eliminar(reviewId: string) {
             icon: "success",
             showConfirmButton: false,
             timer: 2000
-          });
+          }).then(function(){location.reload()});
 
           this.books = this.books.filter(x => x._id !== reviewId);
         },

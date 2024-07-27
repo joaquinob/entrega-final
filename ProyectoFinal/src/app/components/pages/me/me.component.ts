@@ -116,7 +116,7 @@ console.log(this.user)
               icon: 'success',
               showConfirmButton: false,
               timer: 2000
-            });
+            }).then(function(){location.reload()});
             this.books.push(response.books as Book);
             console.log(this.books)
           },

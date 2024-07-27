@@ -47,7 +47,7 @@ export class BooksComponent implements OnInit {
               icon: "success",
               showConfirmButton: false,
               timer: 2000
-            });
+            }).then(function(){location.reload()});
 
             this.books = this.books.filter(x => x._id !== bookId);
           },
