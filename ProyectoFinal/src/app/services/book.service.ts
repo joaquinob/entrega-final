@@ -61,11 +61,15 @@ export class BookService {
   }
   
   // editar
-editar(bookId: string, bookEdit: Book){
-  const headers= new HttpHeaders({
-    'Authorization': `Bearer ${this.authService.user?.token}`
-  })
-  return this.http.put(`${this.url}/${this.authService.user?.id}/${bookId}`, {bookEdit}, {headers});
+// editar(bookId: string, bookEdit: Book){
+//   const headers= new HttpHeaders({
+//     'Authorization': `Bearer ${this.authService.user?.token}`
+//   })
+//   return this.http.put(`${this.url}/${this.authService.user?.id}/${bookId}`, {bookEdit}, {headers});
   
+// }
+
+editar(id: string, bookEdit: Book): Observable<any> {
+  return this.http.patch(`${this.url}/${id}`, bookEdit, { headers: this.getAuthHeaders() });
 }
 }
