@@ -37,4 +37,14 @@ export class ReviewsService {
 
 }
 
+getAll(){
+  return this.http.get(this.url)
+}
+delete(reviewId: string){
+  const headers= new HttpHeaders({
+    'Authorization': `Bearer ${this.authService.user?.token}`})
+
+  return this.http.delete(`${this.url}/${reviewId}`,{headers});
+}
+
 }
