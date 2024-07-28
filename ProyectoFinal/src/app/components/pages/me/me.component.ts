@@ -6,14 +6,14 @@ import Swal from 'sweetalert2';
 import { User } from '../../../interfaces/user';
 import { AuthService } from '../../../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ReviewComponent } from './review/review.component';
 
 @Component({
   selector: 'app-me',
   standalone: true,
-  imports: [ReviewComponent],
+  imports: [ReviewComponent, RouterModule],
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })
@@ -78,14 +78,6 @@ console.log(this.user)
         <div>
           <label class="form-label">URL de la imagen de portada</label>
           <input id="image" type="text" class="form-control">
-        </div>
-        <div>
-          <label class="form-label">Puntuación</label>
-          <input id="rating" type="number" class="form-control">
-        </div>
-        <div>
-          <label class="form-label">Reseña</label>
-          <input id="review" type="text" class="form-control">
         </div>`,
       showCancelButton: true,
       confirmButtonText: 'Agregar',
@@ -97,13 +89,12 @@ console.log(this.user)
         const publicationDate = parseInt((document.getElementById('publicationDate') as HTMLInputElement).value);
         const synopsis = (document.getElementById('synopsis') as HTMLInputElement).value;
         const image = (document.getElementById('image') as HTMLInputElement).value;
-        const rating = parseInt((document.getElementById('rating') as HTMLInputElement).value);//parseFloat??
-        const review = (document.getElementById('review') as HTMLInputElement).value;
+       
         // const token = this.token 
         
 
 
-        return { author, title, rating, genre, synopsis, publicationDate, image, review};
+        return { author, title, genre, synopsis, publicationDate, image};
       }
     }).then((result) => {
       if (result.isConfirmed) {

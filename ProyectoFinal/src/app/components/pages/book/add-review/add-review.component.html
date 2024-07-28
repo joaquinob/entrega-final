@@ -1,12 +1,39 @@
+<div id="books-section">
+  @if(ratings.length === 0) {
+      <div class="alert alert-warning">
+          <i class="fa fa-circle-info"></i>
+          Este libro aún no tiene reseñas. Se el primero en comentar!
+      </div>
+  } @else {
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Puntuación:</th>
+        <th scope="col">Comentario:</th>
+        <th scope="col">Usuario</th>          
+      </tr>
+    </thead>
+      @for (rating of ratings; track rating) {
+        <td>{{ rating.rating }}</td>
+        <td>{{ rating.review }}</td>
+        <td>{{ rating.user.username}}</td>
+        
+              
+      }
+    </table>
+  }
+
+</div>
+
+
 <div class="row">
     @if(book){
     <div class="col-md-5">
       <div>
+        <h1>{{ book.title }}</h1>
         <img [src]="book.image" width="350" alt="" />
-  
-        <p>{{ book.title }}</p>
-        <p>{{ book.author}}</p>
-        
+
       </div>
     </div>
     <div class="col-md-1 col-lg-1 d-none d-md-block">
@@ -33,7 +60,7 @@
   
   
       
-<button class="btn btn-success">Reservar</button>
+<button class="btn btn-success">Agregar reseña</button>
 
 
       </form>
