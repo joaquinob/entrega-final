@@ -12,68 +12,68 @@ import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
 @Component({
   selector: 'app-add-review',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule,FormatDatePipe ],
+  imports: [ReactiveFormsModule, RouterModule, FormatDatePipe],
   templateUrl: './add-review.component.html',
-  styleUrl: './add-review.component.css'
+  styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent {
   parametro: string | null = null;
-  book!: Book 
-  form! : FormGroup
+  book!: Book;
+  form!: FormGroup;
 
-constructor(private reviewService: ReviewsService,
-  private bookService: BookService,
-  private builder: FormBuilder,
-  public authService: AuthService,
-  private router: Router,
-  private route: ActivatedRoute
-){
-  let data: Review = {rating: 0, review: ""}
-  this.form = builder.group({
-    "review": new FormControl("",[Validators.required]),
-    "rating": new FormControl(0,Validators.required)
-  });
-  route.paramMap.subscribe((params) => {
-    this.parametro = params.get('id');
-    console.log(this.parametro)
-  });
-  if (this.parametro !== null) {
-    bookService.getBookById(this.parametro).subscribe({
-      next: (response) => {
-        this.book = response as Book;
-        console.log(this.book)
-        console.log(response)
-      },
-      error: () => {},
+  constructor(
+    private reviewService: ReviewsService,
+    private bookService: BookService,
+    private builder: FormBuilder,
+    public authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.form = builder.group({
+      "review": new FormControl("", [Validators.required]),
+      "rating": new FormControl(1, Validators.required)
     });
-  }
-}
 
-enviar(){
-  this.reviewService.addReview(this.book!._id,this.form.value.rating, this.form.value.review).subscribe({
-    next:()=>{
-      Swal.fire({
-        title: "Reseña realizada",
-        text: `tu reseña de ${this.book?.title} esta lista`,
-        icon: "success",
-        timer:2000,
-        didClose: ()=> {
-          this.router.navigateByUrl("me/my-bookings")}
-        })
-      
-        // console.log("reserva realizada")
-  
+    this.route.paramMap.subscribe((params) => {
+      this.parametro = params.get('id');
+      console.log(this.parametro);
+    });
+
+    if (this.parametro !== null) {
+      this.bookService.getBookById(this.parametro).subscribe({
+        next: (response) => {
+          this.book = response as Book;
+          console.log(this.book);
+          console.log(response);
+        },
+        error: () => {},
+      });
+    }
+  }
+
+  enviar() {
+    this.reviewService.addReview(this.book!._id, this.form.value.rating, this.form.value.review).subscribe({
+      next: () => {
+        Swal.fire({
+          title: "Reseña realizada",
+          text: `Tu reseña de ${this.book?.title} está lista`,
+          icon: "success",
+          timer: 2000,
+          didClose: () => {
+            this.router.navigateByUrl("/me");
+          }
+        });
+
       },
-      error: () =>{
+      error: () => {
         Swal.fire({
           title: "Oops",
           text: "Ha ocurrido un error con tu reseña",
           icon: "error",
           timer: 2000,
-           showCloseButton: false
-        })
+          showCloseButton: false
+        });
       }
-    })
-   }
-    
+    });
+  }
 }
