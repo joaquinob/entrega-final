@@ -75,10 +75,10 @@ export class AddReviewComponent implements OnInit {
           text: `Tu reseña de ${this.book?.title} está lista`,
           icon: "success",
           timer: 2000,
-          didClose: () => {
-            this.router.navigateByUrl("/me");
-          }
-        });
+          // didClose: () => {
+          //   this.router.navigateByUrl("/me");
+          // }
+        }).then(function(){location.reload()});
 
       },
       error: () => {
