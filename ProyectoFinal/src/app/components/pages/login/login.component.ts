@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from '../../../interfaces/user';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,12 @@ export class LoginComponent {
   password: string = 'password';
   form!: FormGroup;
 
-  constructor(private builder: FormBuilder, private authService: AuthService, private router: Router) {
+
+  constructor(private builder: FormBuilder, private authService: AuthService, private router: Router, private location: Location) {
     this.form = builder.group({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required])
-    })
+    });
   }
 
   login() {
@@ -40,7 +42,10 @@ export class LoginComponent {
         };
 console.log(response)
         this.authService.saveUser(user);
-        this.router.navigateByUrl('/')
+        //PARA VOLVER A LA PAGINA ANTERIOR
+        this.location.back();
+        // backClicked() {
+        //   this._location.back();
       },
       error: () => {}
     })

@@ -45,6 +45,7 @@
     <div class="d-block d-sm-none">
       <hr />
     </div>
+    @if (authService.user) {
     <div class="col-md-5">
       <form [formGroup]="form" (ngSubmit)="enviar()">
         <div class="mb-3">
@@ -68,6 +69,13 @@
 
       </form>
     </div>
+  } @else {
+    <div class="alert alert-warning">
+      <i class="fa fa-circle-info"></i>
+      Quieres opinar sobre este libro? <a href="/signup">Regístrate </a> o <a href="/login">accede a tu cuenta</a>
+     
+  </div>
+  }
     }
   </div>
   
