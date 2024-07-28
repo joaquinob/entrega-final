@@ -1,30 +1,33 @@
-<div id="books-section">
-  @if(ratings.length === 0) {
-      <div class="alert alert-warning">
-          <i class="fa fa-circle-info"></i>
-          Este libro aún no tiene reseñas. Se el primero en comentar!
-      </div>
-  } @else {
-    <table class="table">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Puntuación:</th>
+@if(ratings.length === 0) {
+  <div class="alert alert-warning">
+      <i class="fa fa-circle-info"></i>
+      Este libro aún no tiene reseñas. Se el primero en comentar!
+  </div>
+} @else {
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Puntuación:</th>
         <th scope="col">Comentario:</th>
-        <th scope="col">Usuario</th>          
-      </tr>
-    </thead>
-      @for (rating of ratings; track rating) {
-        <td>{{ rating.rating }}</td>
-        <td>{{ rating.review }}</td>
-        <td>{{ rating.user.username}}</td>
-        
-              
-      }
-    </table>
-  }
+        <th scope="col">Usuario</th>    
+    </tr>
+     
+  </thead>
 
-</div>
+  <tbody>
+    @for (rating of ratings; track rating) {
+    <tr>
+
+      <td>{{ rating.rating }}</td>
+      <td>{{ rating.review }}</td>
+      <td>{{ rating.user.username}}</td>
+    </tr>
+  }
+  </tbody>
+
+</table>
+}
+
 
 
 <div class="row">
