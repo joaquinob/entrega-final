@@ -20,17 +20,17 @@ export class UserService {
     return this.http.get(this.url, {headers});
   }
 
-  updateUser(userId: string, userData: any): Observable<User> {
+  updateUser(userId: string, userData: any){
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.user?.token}`,
     });
-    return this.http.patch<User>(`${this.url}/update/${userId}`, userData, { headers });
+    return this.http.patch(`${this.url}/update/${userId}`, userData, { headers });
   }
 
-  deleteUser(userId: string): Observable<void> {
+  deleteUser(userId: string) {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.user?.token}`,
     });
-    return this.http.delete<void>(`${this.url}/delete/${userId}`, { headers });
+    return this.http.delete(`${this.url}/${userId}`, { headers });
   }
 }
