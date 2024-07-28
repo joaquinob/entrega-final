@@ -6,14 +6,14 @@ import Swal from 'sweetalert2';
 import { User } from '../../../interfaces/user';
 import { AuthService } from '../../../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ReviewComponent } from './review/review.component';
 
 @Component({
   selector: 'app-me',
   standalone: true,
-  imports: [ReviewComponent],
+  imports: [ReviewComponent, RouterModule],
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })
