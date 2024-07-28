@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { User } from '../../../../interfaces/user';
 import { UserService } from '../../../../services/user.service';
 import Swal from 'sweetalert2';
+import { UserAdmin } from '../../../../interfaces/user-admin';
 
 
 
@@ -14,13 +15,13 @@ import Swal from 'sweetalert2';
 })
 export class UsersComponent {
 
-users! : User[] 
+users! : UserAdmin[] 
  filtro: string = ""
 
 constructor(private userService : UserService){
   userService.getAllUsers().subscribe({
     next:(response)=>{
-      this.users = response as User[]
+      this.users = response as UserAdmin[]
     },
     error:()=>{}
   })
@@ -48,7 +49,7 @@ eliminar(userId: string) {
             timer: 2000
           });
 
-          this.users = this.users.filter(user => user.id !== userId);
+          this.users = this.users.filter(user => user._id !== userId);
         },
         error: () => {
           Swal.fire({
@@ -65,7 +66,7 @@ eliminar(userId: string) {
 }
 editar(userId: string) {
   console.log('Editar usuario:', userId); 
-  const usuarioEditar: User | undefined = this.users.find(x=> x.id === userId);
+  const usuarioEditar: UserAdmin | undefined = this.users.find(x=> x._id === userId);
   console.log(userId)
   if (usuarioEditar) {
     console.log('Usuario encontrado para editar:', usuarioEditar); 
