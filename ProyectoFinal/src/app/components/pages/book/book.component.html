@@ -34,7 +34,9 @@
       <img [src]="book.image" class="card-img-top" alt="{{ book.title }}" height="160">
       <div class="card-body">
         <h5 class="card-title">{{ book.title }}</h5>
-      
+
+        <!-- NO COGE LA PUNTUACION -->
+        <h6 lass="card-title">Puntuación: {{book.rating}}</h6>
   
         <p class="card-text">Autor: {{ book.author }}</p>
         <p class="card-text">Género: {{ book.genre }}</p>
@@ -56,7 +58,7 @@
       }
   </span>
 </p>
-        
+        <!-- <h6>Aporte de {{book.user.username}}</h6> -->
         <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Ver reseñas</a></button>
 
       </div>

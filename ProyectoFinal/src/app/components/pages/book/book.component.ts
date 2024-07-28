@@ -8,6 +8,7 @@ import { FiltrarPipe } from '../../../pipes/filtrar.pipe';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { RouterModule } from '@angular/router';
+import { Ratings } from '../../../interfaces/ratings';
 
 @Component({
   selector: 'app-book',
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
 })
 export class BookComponent implements OnInit {
   books: Book[] =[]
+
   filtro: string = "";
   constructor(private bookService: BookService,
     public authService: AuthService
