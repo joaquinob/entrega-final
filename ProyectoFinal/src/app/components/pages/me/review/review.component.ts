@@ -3,6 +3,7 @@ import { Review } from '../../../../interfaces/review';
 import { ReviewsService } from '../../../../services/reviews.service';
 import { AuthService } from '../../../../services/auth.service';
 import { BookComponent } from '../../book/book.component';
+import { Ratings } from '../../../../interfaces/ratings';
 
 @Component({
   selector: 'app-review',
@@ -12,12 +13,12 @@ import { BookComponent } from '../../book/book.component';
   styleUrl: './review.component.css'
 })
 export class ReviewComponent {
-reviews : Review[] = [];
+reviews : Ratings[] = [];
 
 constructor(private reviewService: ReviewsService, private authService : AuthService){
   this.reviewService.getByUserId(authService.user!.id).subscribe({
     next: (response)=>{
-      this.reviews = response as Review[]
+      this.reviews = response as Ratings[]
       console.log(this.reviews)
     },
     error: (err)=>{
