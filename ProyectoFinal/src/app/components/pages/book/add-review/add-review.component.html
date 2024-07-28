@@ -5,15 +5,25 @@
           Este libro aún no tiene reseñas. Se el primero en comentar!
       </div>
   } @else {
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Puntuación:</th>
+        <th scope="col">Comentario:</th>
+        <th scope="col">Usuario</th>          
+      </tr>
+    </thead>
       @for (rating of ratings; track rating) {
-              <div class="book-card-body">
-                  <p class="card-text">Puntuación: {{ rating.rating }}</p>
-                  <p class="card-text">Comentario: {{ rating.review}}</p>
-                  <p class="card-text">Por {{ rating.user.username}}</p>
-                 
-              </div>
+        <td>{{ rating.rating }}</td>
+        <td>{{ rating.review }}</td>
+        <td>{{ rating.user.username}}</td>
+        
+              
       }
+    </table>
   }
+
 </div>
 
 

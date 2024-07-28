@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../../../../interfaces/book';
 import Swal from 'sweetalert2';
 import { ReviewsService } from '../../../../services/reviews.service';
@@ -16,7 +16,7 @@ import { Ratings } from '../../../../interfaces/ratings';
   templateUrl: './add-review.component.html',
   styleUrls: ['./add-review.component.css']
 })
-export class AddReviewComponent {
+export class AddReviewComponent implements OnInit {
   ratings: Ratings[] = [];
   parametro: string | null = null;
   book!: Book;
@@ -39,16 +39,30 @@ export class AddReviewComponent {
       this.parametro = params.get('id');
       console.log(this.parametro);
     });
+  }
 
+  ngOnInit() {
     if (this.parametro !== null) {
       this.bookService.getBookById(this.parametro).subscribe({
         next: (response) => {
           this.book = response as Book;
-          
           console.log(this.book);
           console.log(response);
+
+          // Obtener reseñas del libro
+          this.reviewService.getBookReviews(this.parametro!).subscribe({
+            next: (reviewsResponse) => {
+              this.ratings = reviewsResponse as Ratings[];
+              console.log(this.ratings);
+            },
+            error: () => {
+              console.error("Error al obtener reseñas del libro");
+            }
+          });
         },
-        error: () => {},
+        error: () => {
+          console.error("Error al obtener el libro");
+        },
       });
     }
   }
