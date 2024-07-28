@@ -34,15 +34,31 @@
       <img [src]="book.image" class="card-img-top" alt="{{ book.title }}" height="160">
       <div class="card-body">
         <h5 class="card-title">{{ book.title }}</h5>
-      
+
+        <!-- NO COGE LA PUNTUACION -->
+        <h6 lass="card-title">Puntuación: {{book.rating}}</h6>
   
         <p class="card-text">Autor: {{ book.author }}</p>
         <p class="card-text">Género: {{ book.genre }}</p>
-        <p class="card-text">Año de publicación: {{ book.publicationDate | formatDate}}</p>
-        <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
+        <p class="card-text">Año de publicación: {{ book.publicationDate}}</p>
 
-        <p class="card-text">Subido por {{ book.user }}</p>
-        
+
+ <!--TOGGLE SYNOPSIS-->                     
+ <p class="card-text">Sinopsis: 
+  <span>
+      @if (!book.showFullSynopsis) {
+          {{book.synopsis | slice:0:15}}
+          <a class="toggle" (click)="toggleSynopsis(book)">Ver más</a>
+      }    
+  </span>
+  <span>
+      @if (book.showFullSynopsis) {
+          {{book.synopsis}}
+          <a class="toggle" (click)="toggleSynopsis(book)">Ver menos</a>
+      }
+  </span>
+</p>
+        <!-- <h6>Aporte de {{book.user.username}}</h6> -->
         <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Ver reseñas</a></button>
 
       </div>

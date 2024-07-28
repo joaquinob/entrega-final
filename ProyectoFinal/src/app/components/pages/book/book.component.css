@@ -33,4 +33,7 @@
   .empty-star {
     color: #ddd; 
   }
-  
+  .toggle{
+    text-decoration: underline;
+    color: rgb(0, 0, 147);
+}
