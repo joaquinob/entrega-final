@@ -9,16 +9,19 @@ import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ReviewComponent } from './review/review.component';
+import { Ratings } from '../../../interfaces/ratings';
+import { SlicePipe } from '../../../pipes/slice.pipe';
 
 @Component({
   selector: 'app-me',
   standalone: true,
-  imports: [ReviewComponent, RouterModule],
+  imports: [ReviewComponent, RouterModule, SlicePipe],
   templateUrl: './me.component.html',
   styleUrl: './me.component.css'
 })
 export class MeComponent implements OnInit {
   books: Book[] = [];
+  rating: Ratings[] = [];
   user!: User
   token!: string 
   constructor(
@@ -126,5 +129,8 @@ console.log(this.user)
     });
   }
 
+  toggleSynopsis(book: any) {
+    book.showFullSynopsis = !book.showFullSynopsis;
+  }
 
 }

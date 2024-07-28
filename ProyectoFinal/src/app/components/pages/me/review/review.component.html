@@ -10,24 +10,20 @@
           <th scope="col">Puntuación</th>
           <th scope="col">Titulo</th>
           <th scope="col">Comentario</th>
+          <th scope="col"></th>
           
         </tr>
       </thead>
       <tbody>
         @for(review of reviews; track review){
         <tr>
-          <!-- <td>
-            <button [disabled]="!(booking.startDate | canCancel)" (click)="eliminar(booking._id)" class="btn btn-danger btn-sm me-1"> -->
-              <!-- <i class="fa fa-trash"></i>
-            </button>
-            <button [disabled]="!(booking.startDate | canCancel)" (click)="editar(booking._id)" class="btn btn-primary btn-sm"> -->
-              <!-- <i class="fa fa-pencil"></i>
-            </button> -->
-          <!-- </td> -->
+          
           <td>{{ review.rating}}</td>
           <td>{{ review.book.title }}</td>
           <td>{{ review.review }}</td>
-        
+          <td><button (click)="eliminar(review._id)" class="btn btn-danger btn-sm me-1"> 
+            <i class="fa fa-trash"></i>
+           </button></td>
         </tr>
         }
       </tbody>

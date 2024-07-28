@@ -31,8 +31,21 @@
                             <p class="card-text">Autor: {{ book.author }}</p>
                             <p class="card-text">Género: {{ book.genre }}</p>
                             <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
-                            <p class="card-text">Sinopsis: {{ book.synopsis }}</p>
-                            <p class="card-text">Rating: {{ book.rating }}</p>
+                            <!--TOGGLE SYNOPSIS-->                     
+                            <p class="card-text">Sinopsis: 
+                                    <span>
+                                        @if (!book.showFullSynopsis) {
+                                            {{book.synopsis | slice:0:15}}
+                                            <a class="toggle" (click)="toggleSynopsis(book)">Ver más</a>
+                                        }    
+                                    </span>
+                                    <span>
+                                        @if (book.showFullSynopsis) {
+                                            {{book.synopsis}}
+                                            <a class="toggle" (click)="toggleSynopsis(book)">Ver menos</a>
+                                        }
+                                    </span>
+                            </p>
                             <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Agregar reseña</a></button>
                         </div>
                     </div>

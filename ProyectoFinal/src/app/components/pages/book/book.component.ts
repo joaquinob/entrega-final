@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../../interfaces/book';
 import { BookService } from '../../../services/book.service';
 import { AuthService } from '../../../services/auth.service';
-import { formatDate } from '@angular/common';
+import { SlicePipe, formatDate } from '@angular/common';
 import { FormatDatePipe } from '../../../pipes/format-date.pipe';
 import { FiltrarPipe } from '../../../pipes/filtrar.pipe';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [FormatDatePipe, FiltrarPipe, FormsModule ,RouterModule ],
+  imports: [FiltrarPipe, FormsModule ,RouterModule, SlicePipe ],
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
@@ -104,6 +104,8 @@ export class BookComponent implements OnInit {
   //   });
   // }
 
-
+  toggleSynopsis(book: any) {
+    book.showFullSynopsis = !book.showFullSynopsis;
+  }
   
 }

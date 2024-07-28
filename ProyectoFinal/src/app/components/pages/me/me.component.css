@@ -35,3 +35,8 @@
 .fa-circle-info {
     margin-right: 10px;
 }
+
+.toggle{
+    text-decoration: underline;
+    color: rgb(0, 0, 147);
+}

@@ -15,6 +15,7 @@ export interface Book {
    averageStars: number // será un valor probablemente decimal
    rating: Ratings[]
    user?: User 
+   showFullSynopsis: false
 
 
 }
