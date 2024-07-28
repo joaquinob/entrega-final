@@ -6,8 +6,8 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { BookService } from '../../../../services/book.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Review } from '../../../../interfaces/review';
 import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
+import { Ratings } from '../../../../interfaces/ratings';
 
 @Component({
   selector: 'app-add-review',
@@ -17,6 +17,7 @@ import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
   styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent {
+  ratings: Ratings[] = [];
   parametro: string | null = null;
   book!: Book;
   form!: FormGroup;
@@ -43,6 +44,7 @@ export class AddReviewComponent {
       this.bookService.getBookById(this.parametro).subscribe({
         next: (response) => {
           this.book = response as Book;
+          
           console.log(this.book);
           console.log(response);
         },
