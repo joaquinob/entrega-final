@@ -1,38 +1,28 @@
 <div class="container mt-5">
-  <div class="row">
-      <!-- Columna para el perfil del usuario -->
-      <div class="col-md-4">
-          <div class="card" style="width: 18rem;" id="card-profile">
-             
-              <div class="card-body">
-                  <h5 class="card-title">{{user.username}}</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                  <li class="list-group-item">{{user.email}}</li>
-              </ul>
-          </div>
-      </div>
-
-      
-      <div class="container mt-5">
-        <!-- Sección de Libros -->
-        <div id="books-section">
-            @if(books.length === 0) {
-                <div class="alert alert-warning">
-                    <i class="fa fa-circle-info"></i>
-                    No tienes libros
-                </div>
-            } @else {
-                @for (book of books; track book) {
-                    <div class="book-card">
-                        <img src="{{ book.image }}" alt="{{ book.title }}">
-                        <div class="book-card-body">
-                            <h5 class="card-title">{{ book.title }}</h5>
-                            <p class="card-text">Autor: {{ book.author }}</p>
-                            <p class="card-text">Género: {{ book.genre }}</p>
-                            <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
-                            <!--TOGGLE SYNOPSIS-->                     
-                            <p class="card-text">Sinopsis: 
+    <div class="welcome-message">
+       Bienvenido a tu perfil,   {{user.username}}
+    </div>
+    <div class="row">
+        <!-- Columna para los libros -->
+        <div class="col-md-6">
+            <!-- Sección de Libros -->
+            <div id="books-section">
+                @if(books.length === 0) {
+                    <div class="alert alert-warning">
+                        <i class="fa fa-circle-info"></i>
+                        No tienes libros
+                    </div>
+                } @else {
+                    @for (book of books; track book) {
+                        <div class="book-card">
+                            <img src="{{ book.image }}" alt="{{ book.title }}">
+                            <div class="book-card-body">
+                                <h5 class="card-title">{{ book.title }}</h5>
+                                <p class="card-text">Autor: {{ book.author }}</p>
+                                <p class="card-text">Género: {{ book.genre }}</p>
+                                <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
+                                <!--TOGGLE SYNOPSIS-->                     
+                                <p class="card-text">Sinopsis: 
                                     <span>
                                         @if (!book.showFullSynopsis) {
                                             {{book.synopsis | slice:0:15}}
@@ -45,22 +35,24 @@
                                             <a class="toggle" (click)="toggleSynopsis(book)">Ver menos</a>
                                         }
                                     </span>
-                            </p>
-                            <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Agregar reseña</a></button>
+                                </p>
+                                <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Agregar reseña</a></button>
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
+            </div>
+            <!-- Botón para Añadir Libro -->
+            <div id="addbook" class="mt-4">
+                <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Libro</button>
+            </div>
         </div>
-    
-        <!-- Sección de Reseñas -->
-        <div id="myreview">
-            <app-review></app-review>
-        </div>
-    
-        <!-- Botón para Añadir Libro -->
-        <div id="addbook" class="mt-4">
-            <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Libro</button>
+
+        <!-- Columna para las reseñas -->
+        <div class="col-md-6">
+            <div id="myreview">
+                <app-review></app-review>
+            </div>
         </div>
     </div>
-  </div>
+</div>
