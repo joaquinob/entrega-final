@@ -32,3 +32,24 @@ h1{
     font-weight: bold;
     font-size: 3vh;
 }
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1; /* Asegúrate de que esté por encima del contenido colapsable */
+  }
+  
+  .navbar-collapse {
+    z-index: 2; /* Asegúrate de que los elementos del nav estén por encima del logo */
+  }
+  
+  @media (max-width: 767.98px) {
+    .navbar-brand {
+      position: fixed;
+      top: 10px;
+    }
+  }
+  

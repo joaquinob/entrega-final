@@ -1,15 +1,19 @@
 <nav class="navbar navbar-expand-md sticky-top">
-  <div class="container-fluid">
+  <div class="container-fluid position-relative">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <!-- Logo que siempre permanece visible -->
+    <h1 class="navbar-brand position-absolute start-50 translate-middle-x">ReadsLike</h1>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa-solid fa-house"></i></a>
+          <!-- Ocultar en pantallas medianas y más grandes, mostrar en pantallas pequeñas -->
+          <a class="nav-link d-md-none" aria-current="page" routerLink="/">Home</a>
+          <!-- Mostrar en pantallas medianas y más grandes, ocultar en pantallas pequeñas -->
+          <a class="nav-link d-none d-md-block" aria-current="page" routerLink="/"><i class="fa-solid fa-house"></i></a>
         </li>
       </ul>
-      <h1 class="navbar-brand mx-auto position-relative">ReadsLike</h1>
       <ul class="navbar-nav ms-auto">
         @if(authService.user === null) {
           <li class="nav-item">
@@ -42,7 +46,6 @@
             <a class="nav-link active" aria-current="page" routerLink="/me"><i class="fa-regular fa-user"></i></a>
             <button class="nav-link btn btn-link" (click)="confirmLogout()">Salir <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
           }
-         
         }
       </ul>
     </div>
