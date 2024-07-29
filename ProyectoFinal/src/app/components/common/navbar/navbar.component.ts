@@ -22,7 +22,6 @@ export class NavbarComponent {
       cancelButtonColor: "#d33",
       confirmButtonText: "Sí, ¡salir!",
       cancelButtonText: "Cancelar!",
-  
     }).then((result) => {
       if (result.isConfirmed) {
         this.authService.deleteUser();
@@ -30,7 +29,9 @@ export class NavbarComponent {
           title: "¡Cerraste sesión!",
           text: "Esperamos verte pronto",
           icon: "success"
-        });
+        }).then(function() {
+          window.location.href = "";
+      });
       }
     });
   }
