@@ -26,7 +26,7 @@
 
         @if(authService.user && authService.user.role === 'admin') {
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle me-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle me-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Admin
               <i class="fa-solid fa-user-gear"></i>
             </a>
@@ -35,12 +35,10 @@
               <li><a class="dropdown-item" routerLink="/admin/users">Usuarios</a></li>
               <li><a class="dropdown-item" routerLink="/admin/reviews">Reviews</a></li>
               <li><a class="dropdown-item" aria-current="page" routerLink="/me">Mi perfil</a></li>
-              <li class="dropdown-item d-flex align-items-center">
-                <button class="nav-link btn btn-link" (click)="confirmLogout()">Salir</button>
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              </li>
+              <li class="dropdown-item d-flex align-items-center"></li>
             </ul>
           </li>
+          <button class="nav-link btn btn-link" (click)="confirmLogout()">Salir <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         } @else {
           @if (authService.user) {
             <a class="nav-link active" aria-current="page" routerLink="/me"><i class="fa-regular fa-user"></i></a>

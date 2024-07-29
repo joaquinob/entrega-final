@@ -1,12 +1,11 @@
 <div class="profileHeader">
     <div class="welcome-message">
-    Bienvenido a tu perfil, <br>
-     {{user.username}}
-     </div>
+        Bienvenido, <br>
+        {{user.username}}
+    </div>
 </div>
 
 <div class="container mt-5">
-    
     <div class="row">
         <!-- Columna para los libros -->
         <div class="col-md-6">
@@ -26,7 +25,6 @@
                                 <p class="card-text">Autor: {{ book.author }}</p>
                                 <p class="card-text">Género: {{ book.genre }}</p>
                                 <p class="card-text">Año de publicación: {{ book.publicationDate }}</p>
-                                <!--TOGGLE SYNOPSIS-->                     
                                 <p class="card-text">Sinopsis: 
                                     <span>
                                         @if (!book.showFullSynopsis) {
@@ -47,7 +45,6 @@
                     }
                 }
             </div>
-            <!-- Botón para Añadir Libro -->
             <div id="addbook" class="mt-4">
                 <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Libro</button>
             </div>
