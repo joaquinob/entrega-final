@@ -1,45 +1,64 @@
 
+
+/* Estilos para el contenedor del formulario centrado */
 .centered-form {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f8f9fa;
+    background-color: rgba(248, 249, 250, 0.791); /* Fondo ligeramente transparente para el formulario */
     padding: 20px;
+    background-image: url('../../../images/22896105_6728380.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fija la imagen al fondo */
+    background-position: center;
+    margin: 0;
+    padding: 0;
 }
+
+/* Estilos para el contenedor del formulario */
 .form-container {
     border: 2px solid #ccc;
     border-radius: 10px;
     padding: 20px;
     width: 100%;
     max-width: 600px;
-    background-color: #fff;
+    background-color: #ffffffc3;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilos para el título del formulario */
 .form-container h1 {
     text-align: center;
     margin-bottom: 20px;
 }
+
+/* Estilos para los botones del formulario */
 .form-container .btn-primary {
     width: 100%;
+    background-color: #D2691E;
+    border-color: #D2691E;
 }
+
+.form-container .btn-primary:hover {
+    background-color: #556B2F;
+    border-color: #556B2F;
+}
+
+/* Estilos para el texto dentro del formulario */
 .form-container p {
     text-align: center;
 }
-.form-container .btn-primary {
-    width: 100%;
-    background-color:  #D2691E;
-    border-color:  #D2691E;
-}
-.form-container .btn-primary:hover {
-    background-color: #556B2F; 
-    border-color: #556B2F;}
 
+/* Ajustes para pantallas medianas */
 @media (min-width: 768px) {
     .form-container {
         padding: 40px;
     }
 }
+
+/* Ajustes para pantallas grandes */
 @media (min-width: 992px) {
     .centered-form {
         padding: 40px;

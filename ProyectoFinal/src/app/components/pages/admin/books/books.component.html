@@ -1,42 +1,45 @@
 @if(books.length === 0) {
-    <div class="alert alert-warning">
-      <i class="fa fa-circle-info"></i>
-      Aún no hay ningún libro cargado
-    </div>
-  } @else {
-    <h1>Total de contribuciones: {{books.length}}</h1>
-    <table class="table">
-      <thead>
+  <div class="alert alert-warning">
+    <i class="fa fa-circle-info"></i>
+    Aún no hay ningún libro cargado
+  </div>
+} @else {
+  <h3>Total de contribuciones: {{books.length}}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Imagen</th>
+        <th scope="col">Título</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Año</th>
+        <th scope="col">Género</th>
+        <th scope="col">Sinópsis</th>
+        
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (book of books; track book) {
         <tr>
-          <th scope="col"></th>
-          <th scope="col">Título</th>
-          <th scope="col">Autor</th>
-          <th scope="col">Año</th>
-          <th scope="col">Género</th>
-          <th scope="col">Sinópsis</th>
-          <th scope="col">Imágen</th>
+          
+          <td><img src="{{ book.image }}" alt="{{ book.title }}" class="book-image"></td>
+          <td class="bookTitle" >{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.publicationDate }}</td>
+          <td>{{ book.genre }}</td>
+          <td>{{ book.synopsis }}</td>
+          
+          <td class="text-end">
+            <!-- Botones de acción -->
+            <button (click)="eliminar(book._id)" class="btn btn-danger btn-sm me-1">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button (click)="editar(book._id)" class="btn btn-primary btn-sm">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        @for(book of books; track book) {
-          <tr>
-            <td>
-              <button  (click)="eliminar(book._id)" class="btn btn-danger btn-sm me-1">
-                <i class="fa fa-trash"></i>
-              </button>
-              <button (click)="editar(book._id)" class="btn btn-primary btn-sm">
-                <i class="fa fa-pencil"></i>
-              </button>
-            </td>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-            <td>{{ book.publicationDate }}</td>
-            <td>{{ book.genre }}</td>
-            <td>{{ book.synopsis }}</td>
-            <td>{{ book.image }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  }
-  
+      }
+    </tbody>
+  </table>
+}
