@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../../../interfaces/book';
 import Swal from 'sweetalert2';
 import { ReviewsService } from '../../../../services/reviews.service';
-import { FormBuilder, FormControl, FormGroup, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookService } from '../../../../services/book.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
 import { Ratings } from '../../../../interfaces/ratings';
 import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-review',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, FormatDatePipe, NgClass],
+  imports: [ReactiveFormsModule, RouterModule, NgClass],
   templateUrl: './add-review.component.html',
   styleUrls: ['./add-review.component.css']
 })
@@ -25,7 +24,10 @@ export class AddReviewComponent implements OnInit {
   form!: FormGroup;
   currentPage = 1;
   itemsPerPage = 5;
-  pageNumbers: number[] = [];
+  averageRating = 0;
+  filledStars: number[] = [];
+  emptyStars: number[] = [];
+  hoverRating = 0;
 
   constructor(
     private reviewService: ReviewsService,
@@ -37,7 +39,7 @@ export class AddReviewComponent implements OnInit {
   ) {
     this.form = builder.group({
       "review": new FormControl("", [Validators.required]),
-      "rating": new FormControl(1, Validators.required)
+      "rating": new FormControl(1, [Validators.required, Validators.min(1), Validators.max(5)])
     });
 
     this.route.paramMap.subscribe((params) => {
@@ -63,8 +65,7 @@ export class AddReviewComponent implements OnInit {
     this.reviewService.getBookReviews(this.parametro!).subscribe({
       next: (reviewsResponse) => {
         this.ratings = reviewsResponse as Ratings[];
-        this.calculatePageNumbers();
-        this.updatePaginatedRatings();
+        this.calculateAverageRating();
       },
       error: () => {
         console.error("Error al obtener reseñas del libro");
@@ -72,22 +73,28 @@ export class AddReviewComponent implements OnInit {
     });
   }
 
-  calculatePageNumbers() {
-    const totalPages = Math.ceil(this.ratings.length / this.itemsPerPage);
-    this.pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
-
-  updatePaginatedRatings() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = this.currentPage * this.itemsPerPage;
-    this.paginatedRatings = this.ratings.slice(start, end);
-  }
-
-  changePage(pageNumber: number) {
-    if (pageNumber >= 1 && pageNumber <= this.pageNumbers.length) {
-      this.currentPage = pageNumber;
-      this.updatePaginatedRatings();
+  calculateAverageRating() {
+    if (this.ratings.length > 0) {
+      const totalRating = this.ratings.reduce((sum, rating) => sum + rating.rating, 0);
+      this.averageRating = totalRating / this.ratings.length;
+      this.filledStars = Array(Math.floor(this.averageRating)).fill(0);
+      this.emptyStars = Array(5 - Math.floor(this.averageRating)).fill(0);
+    } else {
+      this.averageRating = 0;
+      this.filledStars = Array(0).fill(0);
+      this.emptyStars = Array(5).fill(0);
     }
+  }
+  getStars(rating: number): boolean[] {
+    return Array.from({ length: 5 }, (_, i) => i < rating);
+  }
+
+  setHoverRating(rating: number) {
+    this.hoverRating = rating;
+  }
+
+  setRating(rating: number) {
+    this.form.patchValue({ rating });
   }
 
   enviar() {
@@ -112,4 +119,6 @@ export class AddReviewComponent implements OnInit {
       }
     });
   }
+
+ 
 }

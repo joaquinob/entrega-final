@@ -1,25 +1,40 @@
 .reviews-container {
     max-height: 50vh;
     overflow-y: auto;
-    padding-right: 1rem; /* Para el desplazamiento vertical */
+    padding-right: 1rem;
+    position: relative;
+  }
+  
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1000;
+    padding: 10px 0;
+  }
+  
+  .text-center {
+    text-align: center;
   }
   
   .table {
     margin-bottom: 0;
   }
-  .bookImage{
+  
+  .bookImage {
     max-height: 50vh;
   }
-
-  h1{
-    font-size:larger;
+  
+  h1 {
+    font-size: larger;
     font-weight: bold;
-    text-align: center ;
   }
-  /* add-review.component.css */
-
-/* Estilos para el esqueleto de carga */
-.skeleton {
+  
+  .star-rating i {
+    cursor: pointer;
+  }
+  
+  .skeleton {
     background: #e0e0e0;
     border-radius: 4px;
     position: relative;
@@ -32,51 +47,48 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.2) 20%, transparent 40%, transparent 100%);
     animation: loading 1.5s infinite;
+  }
+  
+  .skeleton-img {
+    width: 100%;
+    height: 200px;
+    border-radius: 4px;
+  }
+  
+  .skeleton-title {
+    width: 70%;
+    height: 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+  
+  .skeleton-reviews {
+    margin-top: 20px;
+  }
+  
+  .skeleton-table {
+    width: 100%;
+    border-radius: 4px;
+  }
+  
+  .skeleton-table-row {
+    height: 30px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background: #e0e0e0;
   }
   
   @keyframes loading {
     0% {
       left: -100%;
     }
+    50% {
+      left: 100%;
+    }
     100% {
       left: 100%;
     }
-  }
-  
-  /* Estilos específicos para el esqueleto del libro */
-  .skeleton-book-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .skeleton-img {
-    width: 100%;
-    height: 50vh;
-    background: #d0d0d0;
-  }
-  
-  .skeleton-title {
-    width: 60%;
-    height: 2rem;
-    margin-top: 1rem;
-  }
-  
-  /* Estilos específicos para el esqueleto de reseñas */
-  .skeleton-reviews {
-    max-height: 50vh;
-    overflow-y: auto;
-  }
-  
-  .skeleton-table {
-    width: 100%;
-  }
-  
-  .skeleton-table-row {
-    height: 2rem;
-    margin-bottom: 0.5rem;
-    background: #d0d0d0;
   }
   

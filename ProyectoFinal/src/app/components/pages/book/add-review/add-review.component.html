@@ -4,10 +4,10 @@
     <div class="col-12 col-md-6 mb-4 mb-md-0">
       @if(book) {
         <div>
-          <img [src]="book.image" class="img-fluid " class="bookImage" alt="Imagen del libro" />
+          <img [src]="book.image" class="img-fluid bookImage" alt="Imagen del libro" />
         </div>
       }@else {
-        <div  class="skeleton skeleton-book-info">
+        <div class="skeleton skeleton-book-info">
           <!-- Skeleton para la imagen del libro -->
           <div class="skeleton-img"></div>
           <!-- Skeleton para el título del libro -->
@@ -18,60 +18,61 @@
 
     <div class="col-12 col-md-6">
       <div class="reviews-container">
-
-        @if (!ratings.length) {
+        <div class="sticky-header">
+          @if (!ratings.length) {
             <!-- Skeleton para la tabla de reseñas -->
             <div class="skeleton skeleton-reviews">
-            <div class="skeleton-table">
-              <div class="skeleton-table-row"></div>
-              <div class="skeleton-table-row"></div>
-              <div class="skeleton-table-row"></div>
+              <div class="skeleton-table">
+                <div class="skeleton-table-row"></div>
+                <div class="skeleton-table-row"></div>
+                <div class="skeleton-table-row"></div>
+              </div>
             </div>
-          </div>
-        } @else if(ratings.length === 0) {
-          <div class="alert alert-warning">
-            <i class="fa fa-circle-info"></i>
-            Este libro aún no tiene reseñas. ¡Sé el primero en comentar!
-          </div>
-        } @else {
-          <h1>"{{ book.title }}"</h1>
-          <table class="table table-striped">
-            <thead>
+          } @else if(ratings.length === 0) {
+            <div class="alert alert-warning">
+              <i class="fa fa-circle-info"></i>
+              Este libro aún no tiene reseñas. ¡Sé el primero en comentar!
+            </div>
+          } @else {
+            <div>
+              <h1 class="text-center">"{{ book.title }}"</h1>
+              <div class="text-center">
+                @for (star of filledStars; track star) {
+                  <i class="fa fa-star text-warning"></i>
+                }
+                @for (star of emptyStars; track star) {
+                  <i class="fa fa-star text-secondary"></i>
+                }
+              </div>
+            </div>
+          }
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Puntuación</th>
+              <th scope="col">Comentario</th>
+              <th scope="col">Usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (rating of ratings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); track rating) {
               <tr>
-                <th scope="col">Puntuación</th>
-                <th scope="col">Comentario</th>
-                <th scope="col">Usuario</th>
+                <td>
+                  @for (star of getStars(rating.rating); track star) {
+                    <i class="fa fa-star" [ngClass]="{'text-warning': star, 'text-secondary': !star}"></i>
+                  }
+                </td>
+                <td>{{ rating.review }}</td>
+                <td>{{ rating.user.username }}</td>
               </tr>
-            </thead>
-            <tbody>
-              @for (rating of ratings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); track rating) {
-                <tr>
-                  <td>{{ rating.rating }}</td>
-                  <td>{{ rating.review }}</td>
-                  <td>{{ rating.user.username }}</td>
-                </tr>
-              }
-            </tbody>
-          </table>
-
-          <!-- Paginación -->
-          <nav aria-label="Page navigation">
-            <ul class="pagination">
-              <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
-                <a class="page-link" href="#" (click)="changePage(currentPage - 1)">Previous</a>
-              </li>
-              <li class="page-item" [ngClass]="{'active': currentPage === pageNumber}" *ngFor="let pageNumber of pageNumbers">
-                <a class="page-link" href="#" (click)="changePage(pageNumber)">{{ pageNumber }}</a>
-              </li>
-              <li class="page-item" [ngClass]="{'disabled': currentPage === pageNumbers.length}">
-                <a class="page-link" href="#" (click)="changePage(currentPage + 1)">Next</a>
-              </li>
-            </ul>
-          </nav>
-        }
+            }
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+
 
   <!-- Formulario para Agregar Reseñas -->
   <div class="row mt-4">
@@ -80,7 +81,7 @@
         <form [formGroup]="form" (ngSubmit)="enviar()">
           <div class="mb-3">
             <label class="form-label" for="rating">Puntuación:</label>
-            <input formControlName="rating" class="form-control" type="number" id="rating" />
+            <input formControlName="rating" class="form-control" type="number" id="rating" max="5" min="1" />
           </div>
           <div class="mb-3">
             <label class="form-label" for="review">Comentario:</label>
