@@ -75,6 +75,7 @@ export class AddReviewComponent implements OnInit {
           text: `Tu reseña de ${this.book?.title} está lista`,
           icon: "success",
           timer: 2000,
+          //background: "url('https://img.freepik.com/vector-gratis/ninos-leyendo-ilustracion_114360-8533.jpg?t=st=1722224924~exp=1722228524~hmac=9d785cf6761eff273da1f33bd28c354ef33b8a6331f64b10aa746a6664c3f3bf&w=1380')"
           // didClose: () => {
           //   this.router.navigateByUrl("/me");
           // }

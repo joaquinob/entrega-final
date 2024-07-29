@@ -1,5 +1,6 @@
 .navbar {
-    background-color: #D2691E; /* Color teja */
+    background-color: #d2691ee2;
+     /* Color teja */
 }
 .navbar-brand,
 .nav-link,
@@ -26,4 +27,8 @@
 }
 .btn-link:hover {
     color:#05224B !important; /* Color verde oliva más claro para hover */
+}
+h1{
+    font-weight: bold;
+    font-size: 3vh;
 }
