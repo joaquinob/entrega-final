@@ -17,12 +17,12 @@ body {
 #libros-de-verano h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #2d6a4f; /* Verde oliva */
+    color: #343a40; /* Verde oliva */
 }
 
 #libros-de-verano h3 {
     margin-top: 1.5rem;
-    color: #2d6a4f; /* Verde oliva */
+    color: #007bff; /* Verde oliva */
 }
 
 #libros-de-verano p {
@@ -38,5 +38,5 @@ body {
 }
 
 #libros-de-verano ul li strong {
-    color: #2d6a4f; /* Verde oliva */
+    color: #343a40; /* Verde oliva */
 }

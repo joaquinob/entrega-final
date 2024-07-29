@@ -14,8 +14,16 @@
     margin: 2rem auto;
     max-width: 1200px;
     border-radius: 0.5rem;
-    background-color: #ffffff9f;
+    background-color: #ffffffd4;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .btn{
+    background-color: #d2691ee2;
+    color: #05224B;
+    box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
+}
+.btn:hover {
+    transform: scale(1.2);
   }
   
   .bd-placeholder-img {

@@ -5,6 +5,10 @@
   </div>
 } @else {
   <h3>Total de contribuciones: {{books.length}}</h3>
+  <section class="section2">
+    <input [(ngModel)]="filtro" type="text" class="form-control" placeholder="Filtrar Libros">
+    </section>
+  
   <table class="table">
     <thead>
       <tr>
@@ -19,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (book of books; track book) {
+      @for (book of (books |filtrar: filtro); track book) {
         <tr>
           
           <td><img src="{{ book.image }}" alt="{{ book.title }}" class="book-image"></td>

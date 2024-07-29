@@ -23,11 +23,22 @@
     color: #05224B !important; /* Color verde oliva más claro para hover */
 }
 .btn-link {
-    color: #1954a8 !important; /* Color verde oliva para el botón de logout */
+    color: #05224B  !important; /* Color verde oliva para el botón de logout */
 }
 .btn-link:hover {
-    color:#05224B !important; /* Color verde oliva más claro para hover */
+    color:#1954a8  !important; /* Color verde oliva más claro para hover */
 }
+.btn:hover {
+    transform: scale(1.2);
+    color:#1954a8  !important;
+  }
+
+a:hover{
+    transform: scale(1.2);
+    color:#1954a8  !important;
+}
+
+
 h1{
     font-weight: bold;
     font-size: 3vh;

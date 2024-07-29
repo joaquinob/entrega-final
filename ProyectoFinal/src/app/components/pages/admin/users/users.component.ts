@@ -3,13 +3,15 @@ import { User } from '../../../../interfaces/user';
 import { UserService } from '../../../../services/user.service';
 import Swal from 'sweetalert2';
 import { UserAdmin } from '../../../../interfaces/user-admin';
+import { UserFilterPipe } from '../../../../pipes/user-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [],
+  imports: [UserFilterPipe, FormsModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })

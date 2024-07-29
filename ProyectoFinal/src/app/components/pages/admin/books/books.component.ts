@@ -3,16 +3,20 @@ import Swal from "sweetalert2";
 import { Book } from '../../../../interfaces/book';
 import { BookService } from '../../../../services/book.service';
 import { AuthService } from '../../../../services/auth.service';
+import { FiltrarPipe } from '../../../../pipes/filtrar.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-books',
   standalone: true,
-  imports: [],
+  imports: [FiltrarPipe, FormsModule],
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css'],
 })
 export class BooksComponent implements OnInit {
   books: Book[] = [];
+
+  filtro: string = "";
 
   constructor(private bookService: BookService, private authService: AuthService) { }
 
