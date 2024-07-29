@@ -13,10 +13,10 @@
       <ul class="navbar-nav ms-auto">
         @if(authService.user === null) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
+            <a class="nav-link" routerLink="/login">Iniciar sesión</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/signup">Signup</a>
+            <a class="nav-link" routerLink="/signup">Regístrate</a>
           </li>
         }
 
@@ -38,8 +38,11 @@
             </ul>
           </li>
         } @else {
-          <a class="nav-link active" aria-current="page" routerLink="/me"><i class="fa-regular fa-user"></i></a>
-          <button class="nav-link btn btn-link" (click)="confirmLogout()">Salir <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          @if (authService.user) {
+            <a class="nav-link active" aria-current="page" routerLink="/me"><i class="fa-regular fa-user"></i></a>
+            <button class="nav-link btn btn-link" (click)="confirmLogout()">Salir <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          }
+         
         }
       </ul>
     </div>

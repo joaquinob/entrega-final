@@ -28,7 +28,7 @@ export class NavbarComponent {
         this.authService.deleteUser();
         Swal.fire({
           title: "¡Cerraste sesión!",
-          text: "Tu sesión ha sido cerrada.",
+          text: "Esperamos verte pronto",
           icon: "success"
         });
       }
