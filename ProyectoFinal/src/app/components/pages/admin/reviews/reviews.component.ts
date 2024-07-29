@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Review } from '../../../../interfaces/review';
 import { ReviewsService } from '../../../../services/reviews.service';
@@ -6,17 +7,20 @@ import { Ratings } from '../../../../interfaces/ratings';
 import { BookService } from '../../../../services/book.service';
 import { Book } from '../../../../interfaces/book';
 import Swal from 'sweetalert2';
+import { FiltrarPipe } from '../../../../pipes/filtrar.pipe';
+import { FilterReviewPipe } from '../../../../pipes/filter-review.pipe';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [],
+  imports: [FilterReviewPipe, FormsModule],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.css'
 })
 export class ReviewsComponent {
 ratings: Ratings[] = [];
-books: Book[] = []
+books: Book[] = [];
+filtro: string = "";
 
  
 

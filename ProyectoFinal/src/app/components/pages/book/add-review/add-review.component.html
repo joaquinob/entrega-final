@@ -1,81 +1,100 @@
-@if(ratings.length === 0) {
-  <div class="alert alert-warning">
-      <i class="fa fa-circle-info"></i>
-      Este libro aún no tiene reseñas. Se el primero en comentar!
-  </div>
-} @else {
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Puntuación:</th>
-        <th scope="col">Comentario:</th>
-        <th scope="col">Usuario</th>    
-    </tr>
-     
-  </thead>
+<div class="container mt-4">
+  <div class="row">
+    <!-- Información del Libro y Reseñas -->
+    <div class="col-12 col-md-6 mb-4 mb-md-0">
+      @if(book) {
+        <div>
+          <img [src]="book.image" class="img-fluid bookImage" alt="Imagen del libro" />
+        </div>
+      }@else {
+        <div class="skeleton skeleton-book-info">
+          <!-- Skeleton para la imagen del libro -->
+          <div class="skeleton-img"></div>
+          <!-- Skeleton para el título del libro -->
+          <div class="skeleton-title"></div>
+        </div>
+      }
+    </div>
 
-  <tbody>
-    @for (rating of ratings; track rating) {
-    <tr>
-
-      <td>{{ rating.rating }}</td>
-      <td>{{ rating.review }}</td>
-      <td>{{ rating.user.username}}</td>
-    </tr>
-  }
-  </tbody>
-
-</table>
-}
-
-
-
-<div class="row">
-    @if(book){
-    <div class="col-md-5">
-      <div>
-        <h1>{{ book.title }}</h1>
-        <img [src]="book.image" width="350" alt="" />
-
+    <div class="col-12 col-md-6">
+      <div class="reviews-container">
+        <div class="sticky-header">
+          @if (!ratings.length) {
+            <!-- Skeleton para la tabla de reseñas -->
+            <div class="skeleton skeleton-reviews">
+              <div class="skeleton-table">
+                <div class="skeleton-table-row"></div>
+                <div class="skeleton-table-row"></div>
+                <div class="skeleton-table-row"></div>
+              </div>
+            </div>
+          } @else if(ratings.length === 0) {
+            <div class="alert alert-warning">
+              <i class="fa fa-circle-info"></i>
+              Este libro aún no tiene reseñas. ¡Sé el primero en comentar!
+            </div>
+          } @else {
+            <div>
+              <h1 class="text-center">"{{ book.title }}"</h1>
+              <div class="text-center">
+                @for (star of filledStars; track star) {
+                  <i class="fa fa-star text-warning"></i>
+                }
+                @for (star of emptyStars; track star) {
+                  <i class="fa fa-star text-secondary"></i>
+                }
+              </div>
+            </div>
+          }
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Puntuación</th>
+              <th scope="col">Comentario</th>
+              <th scope="col">Usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (rating of ratings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); track rating) {
+              <tr>
+                <td>
+                  @for (star of getStars(rating.rating); track star) {
+                    <i class="fa fa-star" [ngClass]="{'text-warning': star, 'text-secondary': !star}"></i>
+                  }
+                </td>
+                <td>{{ rating.review }}</td>
+                <td>{{ rating.user.username }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="col-md-1 col-lg-1 d-none d-md-block">
-      <div class="separador"></div>
-    </div>
-    <div class="d-block d-sm-none">
-      <hr />
-    </div>
-    @if (authService.user) {
-    <div class="col-md-5">
-      <form [formGroup]="form" (ngSubmit)="enviar()">
-        <div class="mb-3">
-          <label class="form-label" for="">Puntuación:</label>
-          <input formControlName="rating" class="form-control" type="number" />
-        </div>
-  
-        <div class="mb-3">
-          <label class="form-label" for="">Comentario:</label>
-          <input formControlName="review"  class="form-control" type="text" />
-        </div>
-  
-        <div>
-         
-        </div>
-  
-  
-      
-<button class="btn btn-success">Agregar reseña</button>
-
-
-      </form>
-    </div>
-  } @else {
-    <div class="alert alert-warning">
-      <i class="fa fa-circle-info"></i>
-      Quieres opinar sobre este libro? <a href="/signup">Regístrate </a> o <a href="/login">accede a tu cuenta</a>
-     
   </div>
-  }
+
+
+  <!-- Formulario para Agregar Reseñas -->
+  <div class="row mt-4">
+    @if(authService.user) {
+      <div class="col-12">
+        <form [formGroup]="form" (ngSubmit)="enviar()">
+          <div class="mb-3">
+            <label class="form-label" for="rating">Puntuación:</label>
+            <input formControlName="rating" class="form-control" type="number" id="rating" max="5" min="1" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="review">Comentario:</label>
+            <input formControlName="review" class="form-control" type="text" id="review" />
+          </div>
+          <button class="btn btn-success" type="submit">Agregar reseña</button>
+        </form>
+      </div>
+    } @else {
+      <div class="alert alert-warning">
+        <i class="fa fa-circle-info"></i>
+        ¿Quieres opinar sobre este libro? <a href="/signup">Regístrate</a> o <a href="/login">accede a tu cuenta</a>
+      </div>
     }
   </div>
-  
+</div>

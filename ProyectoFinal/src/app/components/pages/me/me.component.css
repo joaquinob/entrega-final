@@ -1,10 +1,67 @@
+
+
+.profileHeader {
+    height: 60vh;
+    background-image: url('../../../images/16217938_2005.i506.017_read_book_family_isometric.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    padding: 20px; 
+    background-position: 50% 70%;
+}
+
 .welcome-message {
-    font-family: 'Arial', sans-serif;
+    font-family: "Libre Baskerville", serif;
     font-size: 2.5rem;
     color: #333;
-    text-align: center;
     margin-bottom: 30px;
+    max-width: 100%; 
+    background-color: rgba(255, 255, 255, 0.785);
+    border-radius: 15px;
+    padding: 10px;
 }
+
+.addBook {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #d2691ee2;
+    color: #05224B;
+    box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
+}
+.btn{
+    background-color: #d2691ee2;
+    color: #05224B;
+    box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
+}
+.btn:hover {
+    transform: scale(1.2);
+  }
+
+@media (min-width: 768px) {
+    .profileHeader {
+        flex-direction: row; 
+        justify-content: space-between;
+        background-size: cover; 
+    }
+    
+    .welcome-message {
+        font-size: 2.5rem; 
+        text-align: left; 
+        margin-bottom: 0; 
+    }
+}
+
+@media (min-width: 992px) {
+    .profileHeader {
+        height: 500px; 
+        background-size: cover; 
+    }
+}
+
 .book-card {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -12,13 +69,16 @@
     padding: 15px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 .book-card img {
     max-width: 100px;
     margin-right: 20px;
+    flex-shrink: 0;
 }
 .book-card-body {
     flex: 1;
+    min-width: 200px;
 }
 .toggle {
     color: #007bff;
@@ -26,4 +86,17 @@
 }
 .btn-outline-primary, .btn-outline-secondary {
     margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+    .book-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .book-card img {
+        margin-bottom: 10px;
+    }
+    .book-card-body {
+        text-align: left;
+    }
 }

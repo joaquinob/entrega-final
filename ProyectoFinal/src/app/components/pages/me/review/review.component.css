@@ -1,10 +1,14 @@
 .table {
     border-collapse: separate;
     border-spacing: 0 10px;
+    width: 100%;
+    max-width: 100%; /* Para asegurar que la tabla no se desborde */
+    overflow-x: auto; /* Para agregar desplazamiento horizontal si es necesario */
 }
 .table th, .table td {
     border: none;
     padding: 15px;
+    text-align: center; /* Centrar el contenido de las celdas */
 }
 .table thead th {
     background-color: #f8f9fa;
@@ -24,12 +28,44 @@
     vertical-align: middle;
 }
 .table td:first-child {
-    width: 60px; /* Ajusta el ancho de la columna si es necesario */
+    width: 60px;
 }
 .alert-warning {
     margin-bottom: 20px;
     font-size: 1.1rem;
+    text-align: center; /* Centrar el texto de la alerta */
 }
 .fa-circle-info {
     margin-right: 10px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 767px) {
+    .table thead {
+        display: none; /* Ocultar el encabezado en pantallas pequeñas */
+    }
+    .table, .table tbody, .table tr, .table td {
+        display: block; /* Hacer que cada fila y celda sea un bloque */
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .table td {
+        text-align: left; /* Alinear el texto a la derecha */
+        /*/* Espacio para las etiquetas de datos */
+        position: relative;
+    }
+    .table td::before {
+        content: attr(data-label); /* Usar el atributo data-label para las etiquetas */
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        text-align: left; /* Alinear las etiquetas a la izquierda */
+        font-weight: bold;
+    }
+    .table td:first-child {
+        width: auto;
+    }
 }

@@ -1,16 +1,60 @@
 .section {
-    padding: 2rem 0;
     background-color: #ffffff;
-    margin: 2rem auto;
-    max-width: 1200px;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.section2 {
+    height: 60vh;
+    background-image: url('https://img.freepik.com/vector-gratis/amigos-leyendo-juntos-ilustrados_52683-22183.jpg?t=st=1722226305~exp=1722229905~hmac=7ffc13708a8b12eaac499700193806b4f04097fa4dde99b8c94831eaf76e3f0b&w=1380');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+  }
+  
+  .custom-row {
     padding: 2rem 0;
     margin: 2rem auto;
     max-width: 1200px;
     border-radius: 0.5rem;
+    background-color: #ffffffd4;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .btn{
+    background-color: #d2691ee2;
+    color: #05224B;
+    box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
 }
+.btn:hover {
+    transform: scale(1.2);
+  }
+  
+  .bd-placeholder-img {
+    margin-bottom: 10px;
+    width: 140px;
+    height: 140px;
+  }
+  
+  @media (max-width: 992px) {
+    .bd-placeholder-img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .bd-placeholder-img {
+      display: none;
+    }
+  
+    .custom-row h2 {
+      font-size: 1rem;
+    }
+  
+    .custom-row p {
+      font-size: 0.5rem;
+    }
+  
+    .btn-secondary {
+      font-size: 0.5rem;
+      padding: 0.2rem 1rem;
+    }
+  }
+  

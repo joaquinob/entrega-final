@@ -36,7 +36,7 @@
         <h5 class="card-title">{{ book.title }}</h5>
 
         <!-- NO COGE LA PUNTUACION -->
-        <h6 lass="card-title">Puntuación: {{book.rating}}</h6>
+        <!-- <h6 lass="card-title">Puntuación: {{book.rating}}</h6> -->
   
         <p class="card-text">Autor: {{ book.author }}</p>
         <p class="card-text">Género: {{ book.genre }}</p>
@@ -44,11 +44,13 @@
 
 
  <!--TOGGLE SYNOPSIS-->                     
- <p class="card-text">Sinopsis: 
+ <p class="card-text">
+  Sinopsis: </p>                    
+ <p>
   <span>
       @if (!book.showFullSynopsis) {
           {{book.synopsis | slice:0:15}}
-          <a class="toggle" (click)="toggleSynopsis(book)">Ver más</a>
+          <a class="toggle" (click)="toggleSynopsis(book)">...Ver más</a>
       }    
   </span>
   <span>
@@ -59,7 +61,7 @@
   </span>
 </p>
         <!-- <h6>Aporte de {{book.user.username}}</h6> -->
-        <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Ver reseñas</a></button>
+        <div class="alignedBtn"><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Ver reseñas</a></div>
 
       </div>
     </div>

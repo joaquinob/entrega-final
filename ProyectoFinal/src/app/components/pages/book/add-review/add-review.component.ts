@@ -6,21 +6,28 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { BookService } from '../../../../services/book.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
 import { Ratings } from '../../../../interfaces/ratings';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-review',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, FormatDatePipe],
+  imports: [ReactiveFormsModule, RouterModule, NgClass],
   templateUrl: './add-review.component.html',
   styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent implements OnInit {
   ratings: Ratings[] = [];
+  paginatedRatings: Ratings[] = [];
   parametro: string | null = null;
   book!: Book;
   form!: FormGroup;
+  currentPage = 1;
+  itemsPerPage = 5;
+  averageRating = 0;
+  filledStars: number[] = [];
+  emptyStars: number[] = [];
+  hoverRating = 0;
 
   constructor(
     private reviewService: ReviewsService,
@@ -32,12 +39,11 @@ export class AddReviewComponent implements OnInit {
   ) {
     this.form = builder.group({
       "review": new FormControl("", [Validators.required]),
-      "rating": new FormControl(1, Validators.required)
+      "rating": new FormControl(1, [Validators.required, Validators.min(1), Validators.max(5)])
     });
 
     this.route.paramMap.subscribe((params) => {
       this.parametro = params.get('id');
-      console.log(this.parametro);
     });
   }
 
@@ -46,25 +52,49 @@ export class AddReviewComponent implements OnInit {
       this.bookService.getBookById(this.parametro).subscribe({
         next: (response) => {
           this.book = response as Book;
-          console.log(this.book);
-          console.log(response);
-
-          // Obtener reseñas del libro
-          this.reviewService.getBookReviews(this.parametro!).subscribe({
-            next: (reviewsResponse) => {
-              this.ratings = reviewsResponse as Ratings[];
-              console.log(this.ratings);
-            },
-            error: () => {
-              console.error("Error al obtener reseñas del libro");
-            }
-          });
+          this.loadRatings();
         },
         error: () => {
           console.error("Error al obtener el libro");
         },
       });
     }
+  }
+
+  loadRatings() {
+    this.reviewService.getBookReviews(this.parametro!).subscribe({
+      next: (reviewsResponse) => {
+        this.ratings = reviewsResponse as Ratings[];
+        this.calculateAverageRating();
+      },
+      error: () => {
+        console.error("Error al obtener reseñas del libro");
+      }
+    });
+  }
+
+  calculateAverageRating() {
+    if (this.ratings.length > 0) {
+      const totalRating = this.ratings.reduce((sum, rating) => sum + rating.rating, 0);
+      this.averageRating = totalRating / this.ratings.length;
+      this.filledStars = Array(Math.floor(this.averageRating)).fill(0);
+      this.emptyStars = Array(5 - Math.floor(this.averageRating)).fill(0);
+    } else {
+      this.averageRating = 0;
+      this.filledStars = Array(0).fill(0);
+      this.emptyStars = Array(5).fill(0);
+    }
+  }
+  getStars(rating: number): boolean[] {
+    return Array.from({ length: 5 }, (_, i) => i < rating);
+  }
+
+  setHoverRating(rating: number) {
+    this.hoverRating = rating;
+  }
+
+  setRating(rating: number) {
+    this.form.patchValue({ rating });
   }
 
   enviar() {
@@ -75,11 +105,9 @@ export class AddReviewComponent implements OnInit {
           text: `Tu reseña de ${this.book?.title} está lista`,
           icon: "success",
           timer: 2000,
-          // didClose: () => {
-          //   this.router.navigateByUrl("/me");
-          // }
-        }).then(function(){location.reload()});
-
+        }).then(() => {
+          this.loadRatings();
+        });
       },
       error: () => {
         Swal.fire({
@@ -87,9 +115,10 @@ export class AddReviewComponent implements OnInit {
           text: "Ha ocurrido un error con tu reseña",
           icon: "error",
           timer: 2000,
-          showCloseButton: false
         });
       }
     });
   }
+
+ 
 }
