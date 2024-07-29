@@ -1,81 +1,99 @@
-@if(ratings.length === 0) {
-  <div class="alert alert-warning">
-      <i class="fa fa-circle-info"></i>
-      Este libro aún no tiene reseñas. Se el primero en comentar!
-  </div>
-} @else {
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Puntuación:</th>
-        <th scope="col">Comentario:</th>
-        <th scope="col">Usuario</th>    
-    </tr>
-     
-  </thead>
+<div class="container mt-4">
+  <div class="row">
+    <!-- Información del Libro y Reseñas -->
+    <div class="col-12 col-md-6 mb-4 mb-md-0">
+      @if(book) {
+        <div>
+          <img [src]="book.image" class="img-fluid " class="bookImage" alt="Imagen del libro" />
+        </div>
+      }@else {
+        <div  class="skeleton skeleton-book-info">
+          <!-- Skeleton para la imagen del libro -->
+          <div class="skeleton-img"></div>
+          <!-- Skeleton para el título del libro -->
+          <div class="skeleton-title"></div>
+        </div>
+      }
+    </div>
 
-  <tbody>
-    @for (rating of ratings; track rating) {
-    <tr>
+    <div class="col-12 col-md-6">
+      <div class="reviews-container">
 
-      <td>{{ rating.rating }}</td>
-      <td>{{ rating.review }}</td>
-      <td>{{ rating.user.username}}</td>
-    </tr>
-  }
-  </tbody>
+        @if (!ratings.length) {
+            <!-- Skeleton para la tabla de reseñas -->
+            <div class="skeleton skeleton-reviews">
+            <div class="skeleton-table">
+              <div class="skeleton-table-row"></div>
+              <div class="skeleton-table-row"></div>
+              <div class="skeleton-table-row"></div>
+            </div>
+          </div>
+        } @else if(ratings.length === 0) {
+          <div class="alert alert-warning">
+            <i class="fa fa-circle-info"></i>
+            Este libro aún no tiene reseñas. ¡Sé el primero en comentar!
+          </div>
+        } @else {
+          <h1>"{{ book.title }}"</h1>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Puntuación</th>
+                <th scope="col">Comentario</th>
+                <th scope="col">Usuario</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (rating of ratings.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); track rating) {
+                <tr>
+                  <td>{{ rating.rating }}</td>
+                  <td>{{ rating.review }}</td>
+                  <td>{{ rating.user.username }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
 
-</table>
-}
-
-
-
-<div class="row">
-    @if(book){
-    <div class="col-md-5">
-      <div>
-        <h1>{{ book.title }}</h1>
-        <img [src]="book.image" width="350" alt="" />
-
+          <!-- Paginación -->
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
+                <a class="page-link" href="#" (click)="changePage(currentPage - 1)">Previous</a>
+              </li>
+              <li class="page-item" [ngClass]="{'active': currentPage === pageNumber}" *ngFor="let pageNumber of pageNumbers">
+                <a class="page-link" href="#" (click)="changePage(pageNumber)">{{ pageNumber }}</a>
+              </li>
+              <li class="page-item" [ngClass]="{'disabled': currentPage === pageNumbers.length}">
+                <a class="page-link" href="#" (click)="changePage(currentPage + 1)">Next</a>
+              </li>
+            </ul>
+          </nav>
+        }
       </div>
     </div>
-    <div class="col-md-1 col-lg-1 d-none d-md-block">
-      <div class="separador"></div>
-    </div>
-    <div class="d-block d-sm-none">
-      <hr />
-    </div>
-    @if (authService.user) {
-    <div class="col-md-5">
-      <form [formGroup]="form" (ngSubmit)="enviar()">
-        <div class="mb-3">
-          <label class="form-label" for="">Puntuación:</label>
-          <input formControlName="rating" class="form-control" type="number" />
-        </div>
-  
-        <div class="mb-3">
-          <label class="form-label" for="">Comentario:</label>
-          <input formControlName="review"  class="form-control" type="text" />
-        </div>
-  
-        <div>
-         
-        </div>
-  
-  
-      
-<button class="btn btn-success">Agregar reseña</button>
-
-
-      </form>
-    </div>
-  } @else {
-    <div class="alert alert-warning">
-      <i class="fa fa-circle-info"></i>
-      Quieres opinar sobre este libro? <a href="/signup">Regístrate </a> o <a href="/login">accede a tu cuenta</a>
-     
   </div>
-  }
+
+  <!-- Formulario para Agregar Reseñas -->
+  <div class="row mt-4">
+    @if(authService.user) {
+      <div class="col-12">
+        <form [formGroup]="form" (ngSubmit)="enviar()">
+          <div class="mb-3">
+            <label class="form-label" for="rating">Puntuación:</label>
+            <input formControlName="rating" class="form-control" type="number" id="rating" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="review">Comentario:</label>
+            <input formControlName="review" class="form-control" type="text" id="review" />
+          </div>
+          <button class="btn btn-success" type="submit">Agregar reseña</button>
+        </form>
+      </div>
+    } @else {
+      <div class="alert alert-warning">
+        <i class="fa fa-circle-info"></i>
+        ¿Quieres opinar sobre este libro? <a href="/signup">Regístrate</a> o <a href="/login">accede a tu cuenta</a>
+      </div>
     }
   </div>
-  
+</div>

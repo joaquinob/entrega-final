@@ -2,25 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../../../interfaces/book';
 import Swal from 'sweetalert2';
 import { ReviewsService } from '../../../../services/reviews.service';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookService } from '../../../../services/book.service';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormatDatePipe } from '../../../../pipes/format-date.pipe';
 import { Ratings } from '../../../../interfaces/ratings';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-add-review',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, FormatDatePipe],
+  imports: [ReactiveFormsModule, RouterModule, FormatDatePipe, NgClass],
   templateUrl: './add-review.component.html',
   styleUrls: ['./add-review.component.css']
 })
 export class AddReviewComponent implements OnInit {
   ratings: Ratings[] = [];
+  paginatedRatings: Ratings[] = [];
   parametro: string | null = null;
   book!: Book;
   form!: FormGroup;
+  currentPage = 1;
+  itemsPerPage = 5;
+  pageNumbers: number[] = [];
 
   constructor(
     private reviewService: ReviewsService,
@@ -37,7 +42,6 @@ export class AddReviewComponent implements OnInit {
 
     this.route.paramMap.subscribe((params) => {
       this.parametro = params.get('id');
-      console.log(this.parametro);
     });
   }
 
@@ -46,24 +50,43 @@ export class AddReviewComponent implements OnInit {
       this.bookService.getBookById(this.parametro).subscribe({
         next: (response) => {
           this.book = response as Book;
-          console.log(this.book);
-          console.log(response);
-
-          // Obtener reseñas del libro
-          this.reviewService.getBookReviews(this.parametro!).subscribe({
-            next: (reviewsResponse) => {
-              this.ratings = reviewsResponse as Ratings[];
-              console.log(this.ratings);
-            },
-            error: () => {
-              console.error("Error al obtener reseñas del libro");
-            }
-          });
+          this.loadRatings();
         },
         error: () => {
           console.error("Error al obtener el libro");
         },
       });
+    }
+  }
+
+  loadRatings() {
+    this.reviewService.getBookReviews(this.parametro!).subscribe({
+      next: (reviewsResponse) => {
+        this.ratings = reviewsResponse as Ratings[];
+        this.calculatePageNumbers();
+        this.updatePaginatedRatings();
+      },
+      error: () => {
+        console.error("Error al obtener reseñas del libro");
+      }
+    });
+  }
+
+  calculatePageNumbers() {
+    const totalPages = Math.ceil(this.ratings.length / this.itemsPerPage);
+    this.pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  updatePaginatedRatings() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = this.currentPage * this.itemsPerPage;
+    this.paginatedRatings = this.ratings.slice(start, end);
+  }
+
+  changePage(pageNumber: number) {
+    if (pageNumber >= 1 && pageNumber <= this.pageNumbers.length) {
+      this.currentPage = pageNumber;
+      this.updatePaginatedRatings();
     }
   }
 
@@ -75,12 +98,9 @@ export class AddReviewComponent implements OnInit {
           text: `Tu reseña de ${this.book?.title} está lista`,
           icon: "success",
           timer: 2000,
-          //background: "url('https://img.freepik.com/vector-gratis/ninos-leyendo-ilustracion_114360-8533.jpg?t=st=1722224924~exp=1722228524~hmac=9d785cf6761eff273da1f33bd28c354ef33b8a6331f64b10aa746a6664c3f3bf&w=1380')"
-          // didClose: () => {
-          //   this.router.navigateByUrl("/me");
-          // }
-        }).then(function(){location.reload()});
-
+        }).then(() => {
+          this.loadRatings();
+        });
       },
       error: () => {
         Swal.fire({
@@ -88,7 +108,6 @@ export class AddReviewComponent implements OnInit {
           text: "Ha ocurrido un error con tu reseña",
           icon: "error",
           timer: 2000,
-          showCloseButton: false
         });
       }
     });
