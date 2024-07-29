@@ -2,34 +2,38 @@
 @if(ratings.length === 0){
     <div class="alert alert-warning">
       <i class="fa fa-circle-info"></i>
-      No tienes reservas todavía
+      Aún no hay reseñas
     </div>
     } @else {
+      <h3>Total de reseñas : {{ratings.length}}</h3>
+      <section class="section2">
+        <input [(ngModel)]="filtro" type="text" class="form-control" placeholder="Busca por usuario, libro o palabra clave">
+        </section>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col"></th>
           <th scope="col">Usuario</th>
           <th scope="col">Título</th>
            <th scope="col">Rating</th>
           <th scope="col">Comentario</th>
-          <th scope="col"></th>
+          <th scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody>
 
-        @for(rating of ratings; track rating){
+        @for(rating of (ratings | filterReview: filtro); track rating){
         <tr>
+          
+          <td>{{ rating.user.username }}</td> 
+           <td>{{ rating.book.title }}</td>
+          <td>{{ rating.rating }}</td>
+          <td>{{ rating.review }}</td>
           <td>
             <button (click)="eliminar(rating._id)" class="btn btn-danger btn-sm me-1"> 
              <i class="fa fa-trash"></i>
             </button>
             
           </td>
-          <td>{{ rating.user.username }}</td> 
-           <td>{{ rating.book.title }}</td>
-          <td>{{ rating.rating }}</td>
-          <td>{{ rating.review }}</td>
          
         </tr>
         }

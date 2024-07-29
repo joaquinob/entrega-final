@@ -1,3 +1,6 @@
+a {
+  text-decoration: none;
+}
 .card {
   border: 1px solid #ddd; 
   border-radius: 8px; 
@@ -17,6 +20,10 @@
 .card-body {
   padding: 1rem;
   flex-grow: 1; 
+  display: flex;
+  flex-wrap: wrap;
+
+  align-content: flex-end;
 }
 
 .card-title {
@@ -26,6 +33,8 @@
 
 .card-text {
   margin: 0.5rem 0; 
+  display: flex;
+
 }
 
 .rating {
@@ -39,11 +48,24 @@
 }
 
 .toggle {
-  text-decoration: underline;
-  color: rgb(0, 0, 147);
+  color: rgb(1, 1, 101);
   cursor: pointer;
 }
 
 .card-footer {
   text-align: center;
+}
+.btn{
+  background-color: #d2691ee2;
+  color: #05224B;
+  box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
+}
+.btn:hover {
+  transform: scale(1.2);
+}
+
+.alignedBtn{
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
 }

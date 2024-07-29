@@ -5,7 +5,10 @@
     </div>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5 ">
+    <div id="addbook" class="mt-4 d-flex justify-content-center">
+        <button (click)="addNewBook()" class="btn btn-secondary addBook" >Añadir Libro</button>
+    </div>
     <div class="row">
         <!-- Columna para los libros -->
         <div class="col-md-6">
@@ -39,15 +42,13 @@
                                         }
                                     </span>
                                 </p>
-                                <button><a [routerLink]="'/addReview/'+book._id" class="btn btn-outline-primary">Agregar reseña</a></button>
+                                <a class="btn btn-primary" [routerLink]="'/addReview/'+book._id" >Agregar reseña</a>
                             </div>
                         </div>
                     }
                 }
             </div>
-            <div id="addbook" class="mt-4">
-                <button (click)="addNewBook()" class="btn btn-outline-secondary">Añadir Libro</button>
-            </div>
+            
         </div>
 
         <!-- Columna para las reseñas -->

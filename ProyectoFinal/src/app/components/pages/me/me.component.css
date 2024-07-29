@@ -1,3 +1,5 @@
+
+
 .profileHeader {
     height: 60vh;
     background-image: url('../../../images/16217938_2005.i506.017_read_book_family_isometric.jpg');
@@ -22,6 +24,22 @@
     border-radius: 15px;
     padding: 10px;
 }
+
+.addBook {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #d2691ee2;
+    color: #05224B;
+    box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
+}
+.btn{
+    background-color: #d2691ee2;
+    color: #05224B;
+    box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
+}
+.btn:hover {
+    transform: scale(1.2);
+  }
 
 @media (min-width: 768px) {
     .profileHeader {
