@@ -18,7 +18,12 @@
 .table tbody + tbody {
     border-top: 2px solid #dee2e6;
 }
-
+.filter{
+    margin: 5% 10% ;
+  }
+.filter:hover {
+    transform: scale(1.2);
+  }
 @media (max-width: 767px) {
     .table {
         display: block;
