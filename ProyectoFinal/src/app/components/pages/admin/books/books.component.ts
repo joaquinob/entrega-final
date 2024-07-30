@@ -46,6 +46,8 @@ export class BooksComponent implements OnInit {
         this.bookService.deleteBook(bookId).subscribe({
           next: () => {
             Swal.fire({
+              title: "¡Libro eliminado!",
+              text: "Este libro ha sido eliminada correctamente",
               title: "¡Reseña eliminada!",
               text: "La reseña ha sido eliminada correctamente",
               icon: "success",
