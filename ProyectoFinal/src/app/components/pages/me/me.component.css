@@ -1,5 +1,8 @@
 
-
+h3{
+    text-align: center;
+  margin-bottom: 15px;
+}
 .profileHeader {
     height: 60vh;
     background-image: url('../../../images/16217938_2005.i506.017_read_book_family_isometric.jpg');

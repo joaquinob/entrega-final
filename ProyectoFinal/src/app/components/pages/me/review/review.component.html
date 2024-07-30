@@ -1,9 +1,12 @@
+
+
 @if(reviews.length === 0){
     <div class="alert alert-warning">
       <i class="fa fa-circle-info"></i>
       No tienes reseñas todavía
     </div>
     } @else {
+      <h3>Mis reseñas ({{reviews.length}})</h3>
     <table class="table">
       <thead>
         <tr>

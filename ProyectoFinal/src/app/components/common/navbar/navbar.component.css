@@ -1,6 +1,10 @@
+
+
+
+
+
 .navbar {
-    background-color: #d2691ee2;
-     /* Color teja */
+    background-color: #D2691E; /* Color teja */
 }
 .navbar-brand,
 .nav-link,
@@ -23,51 +27,8 @@
     color: #05224B !important; /* Color verde oliva más claro para hover */
 }
 .btn-link {
-    color: #05224B  !important; /* Color verde oliva para el botón de logout */
+    color: #1954a8 !important; /* Color verde oliva para el botón de logout */
 }
 .btn-link:hover {
-    color:#1954a8  !important; /* Color verde oliva más claro para hover */
+    color:#05224B !important; /* Color verde oliva más claro para hover */
 }
-.btn:hover {
-    transform: scale(1.2);
-    color:#1954a8  !important;
-  }
-
-a:hover{
-    transform: scale(1.2);
-    color:#1954a8  !important;
-}
-
-
-h1{
-    font-weight: bold;
-    font-size: 3vh;
-}
-
-.navbar-brand {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    z-index: 1; /* Asegúrate de que esté por encima del contenido colapsable */
-  }
-  
-  .navbar-collapse {
-    z-index: 2; /* Asegúrate de que los elementos del nav estén por encima del logo */
-  }
-  
-  @media (max-width: 767.98px) {
-    .navbar-brand {
-      position: fixed;
-      top: 10px;
-    }
-    .btn:hover {
-        transform: none;
-      }
-    
-    a:hover{
-        transform: none;
-    }
-  }
-  

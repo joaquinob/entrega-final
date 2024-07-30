@@ -20,7 +20,9 @@
                         No tienes libros
                     </div>
                 } @else {
+                    <h3>Libros aportados ({{books.length}})</h3>
                     @for (book of books; track book) {
+                        
                         <div class="book-card">
                             <img src="{{ book.image }}" alt="{{ book.title }}">
                             <div class="book-card-body">
