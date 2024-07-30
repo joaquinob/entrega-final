@@ -1,5 +1,8 @@
 
-
+h3{
+    text-align: center;
+  margin-bottom: 15px;
+}
 .profileHeader {
     height: 60vh;
     background-image: url('../../../images/16217938_2005.i506.017_read_book_family_isometric.jpg');
@@ -37,9 +40,45 @@
     color: #05224B;
     box-shadow: 10px 10px 29px -15px rgba(0,0,0,0.57);
 }
+.btn:link,
+.btn:visited {
+ text-decoration: none;
+ color:#05224B;
+ padding: 7px 15px;
+ border: 1px solid #69300798;
+ border-radius: 10px;
+ display: inline-block;
+ transition: all .2s;
+ position: relative;
+}
+
 .btn:hover {
-    transform: scale(1.2);
-  }
+ transform: translateY(-5px);
+ box-shadow: 0 10px 20px #69300798;
+}
+
+.btn:active {
+ transform: translateY(-3px);
+}
+
+.btn::after {
+ content: "";
+ display: inline-block;
+ height: 100%;
+ width: 100%;
+ border-radius: 100px;
+ top: 0;
+ left: 0;
+ position: absolute;
+ z-index: -1;
+ transition: all .3s;
+}
+
+.btn:hover::after {
+ background-color: #d2691ee2;
+ transform: scaleX(1.2) scaleY(1.2);
+ opacity: 0;
+}
 
 @media (min-width: 768px) {
     .profileHeader {
