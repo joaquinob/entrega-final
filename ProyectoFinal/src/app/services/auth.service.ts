@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
 
   user: User | null = null;
-  url: string = 'http://localhost:3000/api/users';
+  url: string = 'https://backend-book-chi.vercel.app/api/users';
 
   constructor(private http: HttpClient, private cookieService: CookieService) { 
     if (cookieService.check('user')){

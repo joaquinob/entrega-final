@@ -8,7 +8,7 @@ import { Book } from '../interfaces/book';
   providedIn: 'root'
 })
 export class BookService {
-  url: string = "http://localhost:3000/api/book"
+  url: string = "https://backend-book-chi.vercel.app/api/book"
   constructor(private http: HttpClient,
     private authService: AuthService
   ) { }

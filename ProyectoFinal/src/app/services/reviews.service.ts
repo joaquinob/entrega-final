@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ReviewsService {
-  url: string = "http://localhost:3000/api/review";
+  url: string = "https://backend-book-chi.vercel.app/api/review";
   
   constructor(private http: HttpClient, private authService: AuthService) { }
 
