@@ -48,8 +48,6 @@ export class BooksComponent implements OnInit {
             Swal.fire({
               title: "¡Libro eliminado!",
               text: "Este libro ha sido eliminada correctamente",
-              title: "¡Reseña eliminada!",
-              text: "La reseña ha sido eliminada correctamente",
               icon: "success",
               showConfirmButton: false,
               timer: 2000
